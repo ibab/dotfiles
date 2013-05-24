@@ -1,0 +1,3 @@
+backend          : Qt4Agg
+figure.figsize   : 8, 6.5
+figure.dpi       : 90

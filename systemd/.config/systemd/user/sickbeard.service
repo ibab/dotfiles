@@ -1,0 +1,9 @@
+[Unit]
+Description=SickBeard Daemon
+Requires=sabnzbd.service
+
+[Service]
+ExecStart=/usr/bin/env python2 /opt/sickbeard/SickBeard.py --quiet --config %h/.sickbeard/config.ini --datadir %h/.sickbeard
+
+[Install]
+WantedBy=default.target

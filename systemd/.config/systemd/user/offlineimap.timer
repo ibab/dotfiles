@@ -1,0 +1,9 @@
+[Unit]
+Description=OfflineIMAP Quicksync timer
+
+[Timer]
+OnCalendar=*:0/1
+Unit=offlineimap.service
+
+[Install]
+WantedBy=default.target

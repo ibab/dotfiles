@@ -1,0 +1,10 @@
+[Unit]
+Description=Japanese Input
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/xim-uim
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=wm.target

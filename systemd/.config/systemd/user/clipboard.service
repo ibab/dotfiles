@@ -1,0 +1,10 @@
+[Unit]
+Description=Manage clipboard
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/loliclip
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=wm.target

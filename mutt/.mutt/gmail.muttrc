@@ -1,0 +1,20 @@
+color status black red
+
+set from      = "Igor Babuschkin <ibabuschkin@gmail.com>"
+set sendmail  = "/usr/bin/msmtp -a gmail"
+set spoolfile = "+gmail/INBOX"
+set mbox      = "+gmail/archive"
+unset record
+set postponed = "+gmail/drafts"
+
+unset move
+
+macro index A <tag-prefix><save-message>=gmail/archive<enter>
+macro index E "<change-folder>+gmail/archive<enter><limit>~B " "search everything"
+macro index d "<save-message>+gmail/trash<enter>"              "move message to the trash"
+macro index S "<save-message>+gmail/spam<enter>"               "mark message as spam"
+
+macro index,pager I   "<change-folder>+gmail/INBOX<enter>"   "go to Inbox"
+macro index,pager O   "<change-folder>+gmail/archive<enter>"   "go to Inbox"
+
+# vim: ft=muttrc

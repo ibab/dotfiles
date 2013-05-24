@@ -1,0 +1,20 @@
+[Unit]
+Description=PulseAudio Sound System
+After=sound.target
+Requires=sound.target
+
+[Service]
+#BusName=org.PulseAudio1
+BusName=org.pulseaudio.Server
+#Type=forking
+#ExecStart=/usr/bin/pulseaudio --start
+ExecStart=/usr/bin/pulseaudio
+ExecStop=/usr/bin/pulseaudio --kill
+
+Restart=always
+
+[Install]
+WantedBy=wm.target
+
+#Alias=dbus-org.PulseAudio1.service
+#Alias=dbus-org.pulseaudio.Server.service

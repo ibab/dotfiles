@@ -1,0 +1,8 @@
+[Unit]
+Description=Automount devices
+
+[Service]
+ExecStart=/usr/bin/devmon --no-gui --exec-on-drive 'notify-send -i /usr/share/icons/gnome/48x48/devices/drive-removable-media.png "Drive mounted" "A device with label %l has been mounted."' --exec-on-unmount 'notify-send -i /usr/share/icons/gnome/48x48/devices/drive-removable-media.png "Drive unmounted" "Device with label %l has been unmounted."'
+
+[Install]
+WantedBy=default.target

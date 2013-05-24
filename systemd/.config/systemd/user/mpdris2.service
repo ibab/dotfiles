@@ -1,0 +1,8 @@
+[Unit]
+Description=mpDris2
+
+[Service]
+ExecStart=/usr/bin/mpDris2
+
+[Install]
+WantedBy=mpd.service

@@ -1,0 +1,11 @@
+[Unit]
+Description=xmonad
+After=xorg.target
+
+[Service]
+ExecStart=/home/igor/.bin/session /usr/bin/xmonad
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=wm.target
+Alias=wm.service

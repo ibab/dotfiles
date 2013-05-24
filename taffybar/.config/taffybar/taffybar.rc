@@ -1,0 +1,16 @@
+
+style "default" {
+  bg[NORMAL] = "#1e2320"
+  fg[NORMAL] = "#FFFFFF"
+  text[NORMAL] = "#FFFFFF"
+  font_name = "Menlo 9"
+}
+
+style "notification-button" = "default" {
+  bg[NORMAL]   = "#333333"
+  text[NORMAL] = "#FF0000"
+  fg[NORMAL] = "#FF0000"
+}
+
+widget "Taffybar*" style "default"
+widget "*NotificationCloseButton" style "notification-button"

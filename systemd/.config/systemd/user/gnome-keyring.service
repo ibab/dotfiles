@@ -1,0 +1,10 @@
+[Unit]
+Description=GNOME Keyring Daemon
+After=dbus.socket
+IgnoreOnIsolate=true
+
+[Service]
+ExecStart=/usr/bin/gnome-keyring-daemon --start -f
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,19 @@
+color status black blue
+
+set from      = "Igor Babuschkin <igor@babuschkin.de>"
+set sendmail  = "/usr/bin/msmtp -a main"
+
+set spoolfile = "+main/INBOX"
+set mbox      = "+main/archive"
+set record    = "+main/sent"
+set postponed = "+main/drafts"
+
+macro index A <tag-prefix><save-message>=main/archive<enter>
+macro index E "<change-folder>+main/archive<enter><limit>~B " "search everything"
+macro index d "<save-message>+main/trash<enter>"              "move message to the trash"
+macro index S "<save-message>+main/spam<enter>"               "mark message as spam"
+
+macro index,pager I   "<change-folder>+main/INBOX<enter>"   "go to Inbox"
+macro index,pager O   "<change-folder>+main/archive<enter>"   "go to Inbox"
+
+# vim: ft=muttrc

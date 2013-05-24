@@ -1,0 +1,8 @@
+[Unit]
+Description=Sabnzbd+
+
+[Service]
+ExecStart=/usr/bin/sabnzbd -l0
+
+[Install]
+WantedBy=default.target

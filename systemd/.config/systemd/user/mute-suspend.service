@@ -1,0 +1,11 @@
+[Unit]
+Description=Lockscreen
+After=xorg.target
+Requires=dbus.socket
+
+[Service]
+ExecStart=/home/igor/.bin/inhibit.py 'amixer set Master mute; amixer -D hw:29 set Console mute'
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target

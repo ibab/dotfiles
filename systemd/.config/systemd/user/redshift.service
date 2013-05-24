@@ -1,0 +1,10 @@
+[Unit]
+Description=Redshift
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/redshift -l 51.683:7.8 -t 6600:5650
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=graphical.target

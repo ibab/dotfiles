@@ -1,0 +1,29 @@
+
+snippet cmake "CMake template" b
+cmake_minimum_required(VERSION 2.8)
+include(ExternalProject)
+
+project($1)
+
+set(EXTERNAL_PREFIX "${CMAKE_BINARY_DIR}/external")
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+add_executable(Main Main.cpp)
+
+#externalproject_add(
+#    Boost
+#    GIT_REPOSITORY git://gitorious.org/boost/cmake.git
+#    GIT_TAG master
+#    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${EXTERNAL_PREFIX}
+#)
+
+#externalproject_add(
+#    LLVM
+#    SVN_REPOSITORY http://llvm.org/svn/llvm-project/llvm/trunk
+#    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=${EXTERNAL_PREFIX}
+#)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+$0
+endsnippet

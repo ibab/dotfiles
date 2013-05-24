@@ -1,0 +1,10 @@
+[Unit]
+Description=Network Manger Applet
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/nm-applet
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=wm.target

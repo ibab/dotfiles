@@ -1,0 +1,23 @@
+color index color243 default '~l'
+color tree color243 default
+color error red default
+color tilde blue default
+
+# Uni:
+color index color155 default '~f @udo.edu'
+color index color155 default '~f tu-dortmund.de'
+color index color155 default '~f uni-dortmund.de'
+
+# GMail:
+#color index color196 default '~f @gmail.com'
+#color index color196 default '~f @googlemail.com'
+#
+
+# Others
+color quoted color248 default
+color quoted1 color244 default
+color quoted2 color242 default
+color quoted3 color240 default
+color quoted4 color238 default
+color index color227 default '~U'
+color index color241 default '~D'

@@ -1,0 +1,78 @@
+# .gitconfig
+
+[user]
+    name               = Igor Babuschkin
+    email              = igor@babuschk.in
+    signingkey         = ADCEE6BB
+
+[github]
+    user               = ibab
+
+#[init]
+#    templatedir        = ~/.git_template
+
+[core]
+    editor             = vim
+    pager              = less
+    # Show unicode characters in filenames
+    quotepath          = true
+
+[diff]
+    tool               = vimdiff
+    # Detect renames
+    renames            = copies
+
+[merge]
+    tool               = vimdiff
+
+[color]
+	ui                 = true
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "status"]
+    added              = green
+    changed            = yellow
+    untracked          = red
+
+[format]
+    pretty             = fuller
+
+[rerere]
+    # Remember how conflicts were resolved
+    enabled            = true
+
+[advice]
+    # Disable advice for beginners
+    pushNonFastForward = false
+    pushNonFFCurrent   = false
+    pushNonFFDefault   = false
+    pushNonFFMatching  = false
+    statusHints        = false
+    commitBeforeMerge  = false
+    resolveConflict    = false
+    implicitIdentity   = false
+    detachedHead       = false
+    amWorkDir          = false
+
+[push]
+    # Sane default push behaviour
+    # (Only pushes the current branch)
+    default            = upstream
+
+[alias]
+    #n                  = clone
+    #p                  = pull
+    #o                  = checkout
+    #c                  = commit
+    #b                  = branch
+    st                  = status -sb
+    lg                  = log --pretty=oneline --abbrev-commit --graph --decorate
+    ls                 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    alias              = "!git config -l | grep alias | cut -c 7-"
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+
+# vim: ft=gitconfig

@@ -1,0 +1,11 @@
+[Unit]
+Description=Volume Icon
+After=xorg.target
+After=sound.target
+
+[Service]
+ExecStart=/usr/bin/volumeicon
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=wm.target

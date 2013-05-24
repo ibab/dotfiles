@@ -1,0 +1,13 @@
+[Unit]
+Description=Login screen
+After=xorg.target
+Before=wm.target
+
+[Service]
+ExecStart=/usr/bin/i3lock -t --nofork -i /usr/local/wallpapers/background
+#Type=oneshot
+#ExecStart=/usr/bin/i3lock -i /usr/local/wallpapers/background
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=wm.target

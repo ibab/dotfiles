@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable touchpad
+After=xorg.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/synclient TouchpadOff=1
+
+[Install]
+WantedBy=graphical.target

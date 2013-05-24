@@ -1,0 +1,164 @@
+
+# directories and commands
+#set alias_file          = ~/.mutt/alias
+set header_cache        = ~/.mutt/cache/headers
+set message_cachedir    = ~/.mutt/cache/bodies
+set certificate_file    = ~/.mutt/certificates
+set mailcap_path        = ~/.mutt/mailcap
+#set signature           = ~/.mutt/sig
+set tmpdir              = ~/.mutt/temp
+set editor              = "/usr/bin/vim +/^$"
+
+# main options
+set mbox_type           = Maildir
+set folder              = ~/.mail/
+set spoolfile           = "+main/INBOX"
+set timeout             = 0
+set mail_check          = 0
+set sort_alias          = alias
+set reverse_alias
+unset move
+#set delete
+unset confirmappend
+set quit
+#unset mark_old
+#set beep_new
+set pipe_decode
+set thorough_search
+set sleep_time          = 0
+#set arrow_cursor
+unset help
+set copy
+
+set status_format       = " %f [%s/%S] %> (%P)"
+# "-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+
+# index options
+set sort                = reverse-threads
+set sort_aux            = last-date-sent
+# alternative (like gmail)
+#set sort               = threads
+#set sort_aux           = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp        = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# pager options
+set pager_index_lines   = 10
+set pager_context       = 5
+set pager_stop
+set menu_scroll
+set smart_wrap
+set tilde
+unset markers
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+set quote_regexp        = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+
+# formats
+set date_format         = "%y-%m-%d at %I:%M%P"
+set index_format        = "%3C [%Z] %D %-15.15F %s"
+set alias_format        = "%4n %t %-20a  %r"
+
+# composing mail
+set realname            = "Igor Babuschkin"
+set envelope_from
+set sig_dashes
+set edit_headers
+set fast_reply
+#set sendmail_wait       = -1
+#set askcc
+set fcc_attach
+unset mime_forward
+set forward_format      = "Fwd: %s"
+set forward_decode
+set attribution         = "On %d, %n wrote:"
+set reverse_name
+set include
+set forward_quote
+set send_charset        = "utf-8"
+
+# headers to show
+ignore *
+unignore from: to: cc: date: subject:
+hdr_order from: to: cc: date: subject:
+
+# boxes
+source ~/.mutt/mailboxes
+
+# always sourced
+#source $alias_file
+source "~/.mutt/colors.sh|"
+#source ~/.mutt/sidebar.muttrc
+source ~/.mutt/main.muttrc
+
+# account specific sources
+folder-hook main/*   source ~/.mutt/main.muttrc
+folder-hook gmail/*  source ~/.mutt/gmail.muttrc
+folder-hook uni/*    source ~/.mutt/uni.muttrc
+
+# these just give me headaches
+bind index,pager \#    noop
+bind index i           noop
+
+# bindings
+bind pager i           exit
+bind pager /           search
+bind pager <up>        previous-line
+bind pager <down>      next-line
+bind pager k           previous-line
+bind pager j           next-line
+bind pager gg          top
+bind pager G           bottom
+bind index gg          first-entry
+bind index G           last-entry
+bind pager K           previous-undeleted
+bind pager J           next-undeleted
+bind index K           previous-unread
+bind index J           next-unread
+bind index,pager R     group-reply
+
+# macros
+macro index \Cr "<tag-prefix><clear-flag>N" "mark tagged messages as read"
+macro index B   "<limit>~b "                "search message bodies"
+macro index,pager \cb |urlview\n
+macro index <space>    "<sync-mailbox>"
+
+# account switching
+
+macro index,pager \e1 ":source ~/.mutt/main.muttrc<enter>"       #
+macro index,pager \e2 ":source ~/.mutt/gmail.muttrc<enter>"      # Source different accounts on demand
+macro index,pager \e3 ":source ~/.mutt/uni.muttrc<enter>"        #
+
+macro index,pager \eq "<change-folder>+main/INBOX<enter>"
+macro index,pager \ew "<change-folder>+gmail/INBOX<enter>"
+macro index,pager \ee "<change-folder>+uni/INBOX<enter>"
+
+# save a decoded copy in ~
+macro index P   "<pipe-message>cat > ~/"    "save message as"
+
+# quick-sync ~/.mail immediately with offlineimap
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+
+# Google contacts integration
+set query_command = "goobook query '%s'"
+bind editor <Tab> complete-query
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
+
+# Printing
+set print_command="muttprint -P A4 -p TO_FILE:/tmp/$USER.ps && okular /tmp/$USER.ps &"
+
+# Encryption settings
+
+source /etc/Muttrc.gpg.dist
+set pgp_use_gpg_agent               = yes
+set pgp_auto_decode                 = yes
+set crypt_autosign
+set crypt_replysignencrypted        = yes
+set crypt_verify_sig                = yes
+set pgp_mime_signature_filename     = "signature.asc"
+set pgp_mime_signature_description  = "Digital signature"
+
+subscribe systemd-devel@lists.freedesktop.org
+subscribe wayland-devel@lists.freedesktop.org
+subscribe studpool-admins@physik.tu-dortmund.de

@@ -1,0 +1,43 @@
+
+snippet primes "Atkin's sieve"
+char *genprimes(int limit)
+{
+    int sqrtlim = (int) sqrt(limit);
+    char *isprime = malloc(sizeof(int)*(limit+1));
+    isprime[2] = 1;
+    isprime[3] = 1;
+    isprime[4] = 0;
+    for(int i = 5; i <= limit; i++) {
+        isprime[i] = 0;
+    }
+    for(int x = 1; x <= sqrtlim; x++) {
+        for(int y = 1; y <= sqrtlim; y++) {
+            int n = 4 * x*x + y*y;
+            if(n <= limit && (n % 12 == 1 ||  n % 12 == 5)) {
+                isprime[n] = !isprime[n];
+            }
+            n = 3 * x*x + y*y;
+            if(n <= limit && n % 12 == 7) {
+                isprime[n] = !isprime[n];
+            }
+            n = 3 * x*x - y*y;
+            if (x > y && n <= limit && n % 12 == 11) {
+                isprime[n] = !isprime[n];
+            }
+        }
+    }
+
+    for(int n = 5; n <= sqrtlim; n++) {
+        if(isprime[n]) {
+            int sqr = n*n;
+            for(int k = 1; k * sqr <= limit; k++) {
+                isprime[k * sqr] = 0;
+            }
+        }
+    }
+    return isprime;
+}
+$0
+endsnippet
+
+# vim:ft=snippets:

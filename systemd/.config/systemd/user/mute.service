@@ -1,0 +1,8 @@
+[Unit]
+Description=Mute audio
+After=sound.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/amixer set Master mute
+ExecStart=/usr/bin/amixer -D hw:29 set Console mute

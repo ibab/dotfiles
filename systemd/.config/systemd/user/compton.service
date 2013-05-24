@@ -1,0 +1,12 @@
+[Unit]
+Description=Compositing manager
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/compton --backend glx --paint-on-overlay --glx-no-stencil --vsync opengl-swc --shadow-exclude '! name~=""'
+#ExecStart=/home/igor/Code/C/compton/compton -f -D30 -I0.20 -O0.20 --vsync opengl --unredir-if-possible
+#ExecStart=/home/igor/Code/C/compton/compton --vsync opengl
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=wm.target

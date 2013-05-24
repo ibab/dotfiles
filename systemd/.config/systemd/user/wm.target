@@ -1,0 +1,6 @@
+[Unit]
+Description=Window manager
+Wants=xorg.target
+Requires=dbus.socket
+
+[Install]
