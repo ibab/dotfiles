@@ -159,6 +159,9 @@ set crypt_verify_sig                = yes
 set pgp_mime_signature_filename     = "signature.asc"
 set pgp_mime_signature_description  = "Digital signature"
 
+set mime_forward=yes
+set mime_forward_rest=yes
+
 subscribe systemd-devel@lists.freedesktop.org
 subscribe wayland-devel@lists.freedesktop.org
 subscribe studpool-admins@physik.tu-dortmund.de

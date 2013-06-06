@@ -65,6 +65,7 @@ myKeys conf = mkKeymap conf $ [
   ("M-c",                    spawn syncClipboard                          ),
   ("M-S-q",                  io exitSuccess                               ),
   ("M-r",                    restartXMonad                                ),
+  ("M-S-r",                  spawn "devmon -r"                            ),
   ("M-x",                    shellPrompt launcherConfig                   ),
   ("M-S-l",                  spawn lockScreen                             ),
   ("M-n",                    spawnSelected defaultGSConfig commonApps     ),
