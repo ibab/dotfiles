@@ -32,6 +32,8 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'Shougo/vimproc'
 Bundle 'dag/vim2hs'
+Bundle 'saltstack/salt-vim'
+Bundle 'chriskempson/base16-vim'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'davidhalter/jedi-vim'
 

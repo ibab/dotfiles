@@ -3,7 +3,7 @@ style "default" {
   bg[NORMAL] = "#1e2320"
   fg[NORMAL] = "#FFFFFF"
   text[NORMAL] = "#FFFFFF"
-  font_name = "Menlo 9"
+  font_name = "DejaVu Sans Mono 9"
 }
 
 style "notification-button" = "default" {

@@ -143,7 +143,7 @@ main = do
   myLogHook <- case session of
     Right c ->
       return $ dbusLogWithPP c taffyPP
-    Left (err::ClientError) -> do
+    Left (err :: ClientError) -> do
       spawn "notify-send 'Connection to DBus failed'"
       return mempty
 
