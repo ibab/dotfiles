@@ -54,6 +54,8 @@ alias -- '-x'='chmod -x'
 alias ssh='ssh -q'
 alias tb='ls ~/.local/share/Trash/files'
 alias wat='aplay ~/Documents/wat.wav > /dev/null 2>&1 &|'
+alias git='noglob git'
+alias curl='noglob curl'
 
 function gvim() {
     /usr/bin/gvim "+cd $(pwd)" $@ > /dev/null &|
@@ -62,6 +64,11 @@ function gvim() {
 alias open='mimeo'
 
 alias spawn='urxvt -e "cd $(pwd); vim"'
+
+function emacs {
+    /usr/bin/emacsclient -c $@ &|
+
+}
 
 alias mail=mutt
 alias music=ncmpcpp
