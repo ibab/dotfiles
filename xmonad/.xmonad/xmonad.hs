@@ -81,7 +81,7 @@ myKeys conf = mkKeymap conf $ [
   ++ [("M-"   ++ k, switchTo scr            ) | (k, scr) <- screenMap  ]
   ++ [("M-S-" ++ k, moveTo   scr            ) | (k, scr) <- screenMap  ]
     where workspaceMap  = zip (XMonad.workspaces conf) (map show $ [1..9] ++ [0])
-          screenMap     = zip ["s", "a", "d"] [0..]
+          screenMap     = zip ["a", "s", "d"] [0..]
           switchTo scr  = screenWorkspace scr >>= flip whenJust (windows . W.view)
           moveTo scr    = screenWorkspace scr >>= flip whenJust (windows . W.shift)
 
@@ -123,7 +123,7 @@ taffyPP = defaultPP
   ,   ppHidden          = taffybarColor "#d0d0d0" ""
   ,   ppHiddenNoWindows = const []
   ,   ppUrgent          = wrap "<b>" "</b>"
-  ,   ppTitle           = wrap "<b>" "</b>" . taffybarEscape . cutoff 70
+  ,   ppTitle           = wrap "<b>" "</b>" . taffybarEscape . cutoff 60
   ,   ppSep             = " <b>::</b> "
   ,   ppWsSep           = " "
   ,   ppLayout          = id
@@ -131,7 +131,7 @@ taffyPP = defaultPP
   where wrap x y z = x ++ z ++ y
         cutoff n xs | length xs <= n = xs | otherwise = take n xs ++ "…"
 
-myLayout = (borders . avoidStruts) (tiled ||| Mirror tiled ||| tiledSpace)
+myLayout = (borders . avoidStruts) (tiled ||| tiledSpace ||| Mirror tiled)
   where
     borders = lessBorders OnlyFloat
     tiled  = renamed [Replace "Tiled"] $ Tall 1 (1/100) (1/2)
@@ -159,9 +159,7 @@ main = do
     ,   mouseBindings      = myMouseBindings
     ,   layoutHook         = myLayout
     ,   manageHook         = myManageHook
-    ,   handleEventHook    = fullscreenEventHook
-                               <+> docksEventHook 
-    ,   logHook            = myLogHook
-                               >> setWMName "LG3D"
+    ,   handleEventHook    = fullscreenEventHook <+> docksEventHook 
+    ,   logHook            = myLogHook >> setWMName "LG3D"
     ,   startupHook        = return () --spawnOnce "taffybar"
     }
