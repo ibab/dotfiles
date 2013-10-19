@@ -14,3 +14,13 @@ c.TerminalInteractiveShell.confirm_exit = False
 c.TerminalInteractiveShell.term_title = True
 c.PromptManager.out_template = '[\\#]: '
 c.PromptManager.in_template = r' [\#]: '
+
+c.InlineBackend.rc = {'font.size': 16,
+                      'axes.labelsize': 'x-large',
+                      'legend.fontsize': 'x-large',
+                      'figure.figsize': (8.0, 6.0),
+                      'figure.facecolor': 'white',
+                      'lines.linewidth': 2,
+                      'savefig.dpi': 72,
+                      'figure.subplot.bottom': 0.125,
+                      'figure.edgecolor': 'white'}
