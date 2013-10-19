@@ -240,6 +240,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("FoldColumn", "d2b48c", "4d4d4d", "")
     call <SID>X("IncSearch", "708090", "f0e68c", "")
     call <SID>X("LineNr", "dddddd", "111111", "")
+    call <SID>X("SignColumn", "", "000000", "")
     call <SID>X("ModeMsg", "daa520", "", "")
     call <SID>X("MoreMsg", "2e8b57", "", "")
     call <SID>X("NonText", "addbe7", "000000", "bold")
@@ -286,6 +287,11 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("User3", "ff66ff", "444444", "")
     call <SID>X("User4", "a0ee40", "444444", "")
     call <SID>X("User5", "eeee40", "444444", "")
+
+call <SID>X("GitGutterAdd", "00ff00", "", "")
+call <SID>X("GitGutterChange", "ffff00", "", "")
+call <SID>X("GitGutterDelete", "ff0000", "", "")
+call <SID>X("GitGutterChangeDelete", "ffff00", "", "")
 
     " delete functions {{{
     delf <SID>X

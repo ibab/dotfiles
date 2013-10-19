@@ -29,14 +29,17 @@ Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'SirVer/ultisnips'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'eagletmt/ghcmod-vim'
+"Bundle 'eagletmt/ghcmod-vim'
+Bundle 'lukerandall/haskellmode-vim'
 Bundle 'Shougo/vimproc'
-Bundle 'dag/vim2hs'
+"Bundle 'dag/vim2hs'
 Bundle 'saltstack/salt-vim'
 Bundle 'chriskempson/base16-vim'
+Bundle 'jhenahan/idris-vim'
+Bundle 'mattn/emmet-vim'
+Bundle 'airblade/vim-gitgutter'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'davidhalter/jedi-vim'
-
 
 " nmap h <nop>
 " nmap j <nop>
@@ -54,6 +57,8 @@ let g:syntastic_mode_map = { 'mode' : 'passive',
                             \ 'passive_filetypes' : [] }
 
 let g:pandoc_no_folding = 1
+
+let g:haddock_browser = "firefox"
 
 set foldlevelstart=20
 
