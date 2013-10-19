@@ -3,3 +3,6 @@ import:
     write: yes
     move: yes
     resume: no
+
+plugins:
+    missing
