@@ -102,7 +102,7 @@ function precmd {
     RPS1="${vcs_info_msg_0_} %{%B%F{blue}%}%~%{%f%b%}"
 }
 
-if [ "$USER" != "igor" ];
+if [ "$USER" != "igor" ] && [ "$USER" != "ibabuschkin" ] && [ "$USER" != "ibabusch" ];
 then
     PS1="%{%F{green}%}(%n)%f$PS1"
 fi
