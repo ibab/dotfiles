@@ -40,6 +40,7 @@ Bundle 'mattn/emmet-vim'
 Bundle 'airblade/vim-gitgutter'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'davidhalter/jedi-vim'
+Bundle 'junegunn/vim-easy-align'
 
 " nmap h <nop>
 " nmap j <nop>
@@ -91,7 +92,7 @@ filetype indent on
 set cinoptions+=L0
 syntax enable
 set backspace=eol,start,indent
-set mouse=a
+"set mouse=a
 set completeopt=menu
 
 " Mapleaders
