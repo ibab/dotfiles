@@ -96,6 +96,7 @@ source ~/.mutt/main.muttrc
 folder-hook main/*   source ~/.mutt/main.muttrc
 folder-hook gmail/*  source ~/.mutt/gmail.muttrc
 folder-hook uni/*    source ~/.mutt/uni.muttrc
+folder-hook cern/*    source ~/.mutt/cern.muttrc
 
 # these just give me headaches
 bind index,pager \#    noop
@@ -129,10 +130,12 @@ macro index <space>    "<sync-mailbox>"
 macro index,pager \e1 ":source ~/.mutt/main.muttrc<enter>"       #
 macro index,pager \e2 ":source ~/.mutt/gmail.muttrc<enter>"      # Source different accounts on demand
 macro index,pager \e3 ":source ~/.mutt/uni.muttrc<enter>"        #
+macro index,pager \e4 ":source ~/.mutt/cern.muttrc<enter>"        #
 
 macro index,pager \eq "<change-folder>+main/INBOX<enter>"
 macro index,pager \ew "<change-folder>+gmail/INBOX<enter>"
 macro index,pager \ee "<change-folder>+uni/INBOX<enter>"
+macro index,pager \er "<change-folder>+cern/INBOX<enter>"
 
 # save a decoded copy in ~
 macro index P   "<pipe-message>cat > ~/"    "save message as"
