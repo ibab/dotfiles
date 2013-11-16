@@ -1,5 +1,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
+import System.Environment
+import System.Directory
 import Data.Monoid
 import qualified Data.Map as M
 import Control.Exception
@@ -11,11 +13,15 @@ import qualified XMonad.StackSet as W
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.SetWMName
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.Minimize
+import XMonad.Hooks.Place
+--import XMonad.Hooks.ICCCMFocus
 
 import XMonad.Prompt
 import XMonad.Prompt.Shell
+import XMonad.Prompt.XMonad
+import XMonad.Prompt.Ssh
 
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig
@@ -23,14 +29,15 @@ import XMonad.Util.EZConfig
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
-import XMonad.Layout.Tabbed
+import Custom.XMonad.Layout.NoFrillsDecoration
+import XMonad.Layout.Minimize
+import XMonad.Layout.MosaicAlt
 
 import XMonad.Actions.GridSelect
 import XMonad.Actions.NoBorders
 
 import System.Taffybar.XMonadLog
 import DBus.Client
-
 
 editor         = "gvim"
 syncClipboard  = "lolictrl -spc > /dev/null"
@@ -41,6 +48,27 @@ commonApps     = [ "firefox"
                  ]
 
 restartXMonad = spawn "xmonad --recompile && xmonad --restart && notify-send 'Restarted XMonad'"
+
+data Pass = Pass
+
+instance XPrompt Pass where
+  showXPrompt       Pass = "Pass: "
+  commandToComplete _ c  = c
+  nextCompletion      _  = getNextCompletion
+
+passPrompt :: XPConfig -> X ()
+passPrompt c = do
+  li <- io getPasswords
+  mkXPrompt Pass c (mkComplFunFromList li) selectPassword
+
+selectPassword :: String -> X ()
+selectPassword s = spawn $ "pass -c " ++ s
+
+getPasswords :: IO [String]
+getPasswords = do
+  user <- getEnv "USER"
+  entries <- getDirectoryContents $ "/home/" ++ user ++ "/.password-store"
+  return $ map (takeWhile (/= '.')) entries
 
 myKeys conf = mkKeymap conf $ [ 
   ("M-<Return>",             spawn (terminal conf)                        ),
@@ -66,7 +94,8 @@ myKeys conf = mkKeymap conf $ [
   ("M-S-q",                  io exitSuccess                               ),
   ("M-r",                    restartXMonad                                ),
   ("M-S-r",                  spawn "devmon -r"                            ),
-  ("M-x",                    shellPrompt launcherConfig                   ),
+  ("M-x",                    shellPrompt promptConfig                     ),
+  ("M-z",                    passPrompt promptConfig                      ),
   ("M-S-l",                  spawn lockScreen                             ),
   ("M-n",                    spawnSelected defaultGSConfig commonApps     ),
   ("M-t",                    spawn "toggle.sh"                            ),
@@ -90,32 +119,30 @@ myMouseBindings (XConfig { XMonad.modMask = modm }) = M.fromList [
   ((modm, button2), \w -> focus w >> windows W.shiftMaster                       ),
   ((modm, button3), \w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster) ]
 
-launcherConfig = defaultXPConfig
+promptConfig = defaultXPConfig
   { font        = "xft:Source Code Pro:pixelsize=12"
-  , borderColor = "#3f3f3f"
+  , borderColor = "#1e2320"
   , fgColor     = "#dddddd"
   , fgHLight    = "#ffffff"
-  , bgColor     = "#3f3f3f"
-  , bgHLight    = "#6f6f6f"
+  , bgColor     = "#1e2320"
+  , bgHLight    = "#5f5f5f"
   , height      = 18
-  , position    = Bottom
+  , position    = Top
   }
 
-myManageHook = manageDocks <+> composeAll
-  [ resource  =? "desktop_window"    --> doIgnore
-  , resource  =? "kdesktop"          --> doIgnore
-  , title     =? "synapse"           --> doIgnore
-  , title     =? "Eclipse"           --> doFloat
-  , title     =? "Eclipse SDK"       --> doFloat
-  , title     =? "Zenity"            --> doFloat
-  , title     =? "Gnome-Pie"         --> doIgnore
-  , title     =? "devmon unmount"    --> doFloat
+myManageHook = manageDocks <> matches <> placeHook (inBounds (underMouse (0.5,0.5))) 
+matches = composeAll
+  [ title     =? "Eclipse"           --> doCenterFloat
+  , title     =? "Eclipse SDK"       --> doCenterFloat
   , title     =? "Welcome to Wolfram Mathematica 9" --> doFloat
-  , title     =? "Volume Control"    --> doCenterFloat
+  , title     =? "Audience Window - Haskell Pdf Presenter" --> doFloat
+  , title     =? "Presenter Window - Haskell Pdf Presenter" --> doFloat
   , isFullscreen                     --> doFullFloat
+  , isDialog                         --> doCenterFloat
   , role      =? "pop-up"            --> doCenterFloat
   ]
     where role = stringProperty "WM_WINDOW_ROLE"
+
 
 taffyPP = defaultPP
   {   ppCurrent         = wrap "<b>" "</b>"
@@ -131,11 +158,24 @@ taffyPP = defaultPP
   where wrap x y z = x ++ z ++ y
         cutoff n xs | length xs <= n = xs | otherwise = take n xs ++ "…"
 
-myLayout = (borders . avoidStruts) (tiled ||| tiledSpace ||| Mirror tiled)
+
+myTheme = defaultTheme
+  { decoHeight = 16
+  , activeColor = "#3f3f3f"
+  , activeBorderColor = "#5f5f5f"
+  , inactiveColor = "#1e2320"
+  , inactiveBorderColor = "#3f3f3f"
+  , fontName = "xft:DejaVu Sans Mono:pixelsize=10"
+  }
+
+myLayout = renamed [CutLeft 22] $ modify (tiled ||| tiledSpace ||| Mirror tiled ||| MosaicAlt M.empty)
   where
-    borders = lessBorders OnlyFloat
-    tiled  = renamed [Replace "Tiled"] $ Tall 1 (1/100) (1/2)
+    modify = minimize . addTitleBars . manageBorders . avoidStruts
+    addTitleBars = noFrillsDeco shrinkText myTheme
+    manageBorders = lessBorders OnlyFloat
+    tiled  = Tall 1 (1 / 150) (1 / phi)
     tiledSpace = spacing 30 $ tiled
+    phi = toRational $ (1 + sqrt 5) / 2
 
 main = do 
   session <- try connectSession
@@ -150,7 +190,7 @@ main = do
   xmonad defaultConfig 
     {   terminal           = "urxvt"
     ,   focusFollowsMouse  = True
-    ,   borderWidth        = 2
+    ,   borderWidth        = 1
     ,   modMask            = mod4Mask
     ,   workspaces         = ["α", "β", "γ", "δ", "ε", "ζ"]
     ,   normalBorderColor  = "#3f3f3f"
@@ -159,7 +199,7 @@ main = do
     ,   mouseBindings      = myMouseBindings
     ,   layoutHook         = myLayout
     ,   manageHook         = myManageHook
-    ,   handleEventHook    = fullscreenEventHook <+> docksEventHook 
-    ,   logHook            = myLogHook >> setWMName "LG3D"
-    ,   startupHook        = return () --spawnOnce "taffybar"
+    ,   handleEventHook    = fullscreenEventHook <> docksEventHook
+    ,   logHook            = myLogHook-- >> takeTopFocus
+    ,   startupHook        = spawnOnce "taffybar"
     }
