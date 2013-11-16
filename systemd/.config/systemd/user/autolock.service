@@ -1,10 +1,8 @@
 [Unit]
 Description=Lock screen automatically
-After=xorg.target
 
 [Service]
 ExecStart=/usr/bin/xautolock -time 3 -corners ---- -locker 'i3lock -t -i /usr/local/wallpapers/background'
-Environment=DISPLAY=:0
 
 [Install]
-WantedBy=wm.target
+WantedBy=graphical.target

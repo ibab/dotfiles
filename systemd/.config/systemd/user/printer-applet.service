@@ -1,10 +1,8 @@
 [Unit]
 Description=Printer Applet
-After=xorg.target
 
 [Service]
 ExecStart=/usr/bin/system-config-printer-applet
-Environment=DISPLAY=:0
 
 [Install]
-WantedBy=wm.target
+WantedBy=graphical.target

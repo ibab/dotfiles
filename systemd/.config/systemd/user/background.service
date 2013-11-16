@@ -1,8 +1,5 @@
 [Unit]
 Description=Wallpaper setter
-After=xorg.target
-# hack:
-Before=taffybar.service
 
 [Service]
 Type=oneshot
@@ -10,4 +7,4 @@ ExecStart=/usr/bin/feh --bg-scale /usr/local/wallpapers/background
 Environment=DISPLAY=:0
 
 [Install]
-WantedBy=wm.target
+WantedBy=default.target

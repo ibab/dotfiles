@@ -1,11 +1,9 @@
 [Unit]
 Description=Lockscreen
-After=xorg.target
 Requires=dbus.socket
 
 [Service]
 ExecStart=/home/igor/.bin/inhibit.py 'i3lock -i /usr/local/wallpapers/background'
-Environment=DISPLAY=:0
 
 [Install]
-WantedBy=wm.target
+WantedBy=graphical.target
