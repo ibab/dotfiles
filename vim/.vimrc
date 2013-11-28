@@ -7,51 +7,57 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
+Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-characterize'
-" Bundle 'tpope/vim-classpath'
-Bundle 'guns/vim-clojure-static'
-Bundle 'gmarik/vundle'
 Bundle 'sjl/gundo.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'mattn/zencoding-vim'
 Bundle 'JuliaLang/julia-vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-pandoc/vim-pandoc'
 "Bundle 'Valloric/YouCompleteMe'
 Bundle 'SirVer/ultisnips'
-Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'terryma/vim-multiple-cursors'
-"Bundle 'eagletmt/ghcmod-vim'
 Bundle 'lukerandall/haskellmode-vim'
-Bundle 'Shougo/vimproc'
-"Bundle 'dag/vim2hs'
 Bundle 'saltstack/salt-vim'
 Bundle 'chriskempson/base16-vim'
 Bundle 'jhenahan/idris-vim'
 Bundle 'mattn/emmet-vim'
-Bundle 'airblade/vim-gitgutter'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'davidhalter/jedi-vim'
+"Bundle 'airblade/vim-gitgutter'
 Bundle 'junegunn/vim-easy-align'
-
-" nmap h <nop>
-" nmap j <nop>
-" nmap k <nop>
-" nmap l <nop>
+Bundle 'bling/vim-bufferline'
+Bundle 'bling/vim-airline'
+" Disable backups for sensitive data
+Bundle 'https://gist.github.com/5890634.git'
 
 nnoremap <silent> _t :GhcModType<CR>
 
 command! -nargs=1 Silent
 \ | execute ':silent !'.<q-args>
 \ | execute ':redraw!'
+
+let g:airline_powerline_fonts=1
+let g:airline_section_z = "%3l/%L,%2c"
+let g:airline_section_warning=""
+let g:airline#extensions#hunks#enabled = 0
+let g:airline_theme="wombat"
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : '∅',
+    \ 'i'  : 'Ϟ',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : '♐',
+    \ 'V'  : '♐',
+    \ '' : '♐',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
+let g:airline#extensions#bufferline#overwrite_variables = 1
+set ttimeoutlen=50
+
 
 let g:syntastic_mode_map = { 'mode' : 'passive',
                             \ 'active_filetypes' : [],
@@ -60,6 +66,8 @@ let g:syntastic_mode_map = { 'mode' : 'passive',
 let g:pandoc_no_folding = 1
 
 let g:haddock_browser = "firefox"
+
+let g:pad_dir = "~/.pad"
 
 set foldlevelstart=20
 
@@ -191,7 +199,7 @@ set autoread
 "set hidden
 
 " GUI options
-set guifont=Source\ Code\ Pro\ 10
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 set guioptions-=m  " Remove menubar
 set guioptions-=T  " Remove toolbar
 set guioptions-=r  " Remove right-hand scrollbar
@@ -215,7 +223,7 @@ map <Leader>j :make<CR>
 noremap <leader>h :set cursorline!<CR>
 
 " Toggle line numbers
-noremap <leader>n :set number!<CR>
+noremap <leader>l :set number!<CR>
 
 " Quick window splitting
 nnoremap <leader>w <C-w>v<C-w>l
