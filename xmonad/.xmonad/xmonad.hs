@@ -2,6 +2,7 @@
 
 import System.Environment
 import System.Directory
+import System.FilePath.Posix
 import Data.Monoid
 import qualified Data.Map as M
 import Control.Exception
@@ -68,11 +69,12 @@ getPasswords :: IO [String]
 getPasswords = do
   user <- getEnv "USER"
   entries <- getDirectoryContents $ "/home/" ++ user ++ "/.password-store"
-  return $ map (takeWhile (/= '.')) entries
+  return $ map takeBaseName entries
 
 myKeys conf = mkKeymap conf $ [ 
   ("M-<Return>",             spawn (terminal conf)                        ),
-  ("M-e",                    spawn editor                                 ),
+  ("M-S-<Return>",           spawn "urxvt -cd \"`xcwd`\""                 ),
+  ("M-e",                    spawn "gvim -c \"cd `xcwd`\""                ),
   ("M-<Backspace>",          kill                                         ),
   ("M-<Space>",              sendMessage NextLayout                       ),
 --  ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+"                ),
@@ -203,3 +205,5 @@ main = do
     ,   logHook            = myLogHook-- >> takeTopFocus
     ,   startupHook        = spawnOnce "taffybar"
     }
+
+
