@@ -10,4 +10,4 @@ set conceallevel=2
 nnoremap j gj
 nnoremap k gk
 
-setlocal spell
+"setlocal spell

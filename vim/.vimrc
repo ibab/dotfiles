@@ -26,10 +26,17 @@ Bundle 'jhenahan/idris-vim'
 Bundle 'mattn/emmet-vim'
 "Bundle 'airblade/vim-gitgutter'
 Bundle 'junegunn/vim-easy-align'
-Bundle 'bling/vim-bufferline'
 Bundle 'bling/vim-airline'
 " Disable backups for sensitive data
 Bundle 'https://gist.github.com/5890634.git'
+Bundle 'tpope/vim-dispatch'
+Bundle 'pbrisbin/html-template-syntax'
+Bundle 'itchyny/calendar.vim'
+Bundle 'jayflo/vim-skip'
+Bundle 'Valloric/YouCompleteMe'
+
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
 
 nnoremap <silent> _t :GhcModType<CR>
 
@@ -41,6 +48,12 @@ let g:airline_powerline_fonts=1
 let g:airline_section_z = "%3l/%L,%2c"
 let g:airline_section_warning=""
 let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tagbar#enabled = 0
 let g:airline_theme="wombat"
 let g:airline_mode_map = {
     \ '__' : '-',
@@ -72,13 +85,16 @@ let g:pad_dir = "~/.pad"
 set foldlevelstart=20
 
 let g:ycm_confirm_extra_conf = 0
-" let g:ycm_min_num_of_chars_for_completion = 999
 let g:ycm_min_num_of_chars_for_completion = 4
 let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1, 'python': 1 }
 let g:ycm_complete_in_comments_and_strings = 0
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 "let g:ycm_key_invoke_completion = '<c-h>'
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm.py'
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_auto_trigger = 1
+
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -92,6 +108,8 @@ let g:surround_indent=1
 au BufNewFile,BufRead wscript* set filetype=python
 
 let g:jedi#show_function_definition = 0
+
+nnoremap <F11> :Make!<CR>
 
 " Standard settings
 set enc=utf-8
@@ -182,7 +200,7 @@ set noshowcmd
 set noshowmode
 set noruler
 set noerrorbells
-set shortmess+=asI
+set shortmess+=asIc
 
 " Scrolling
 set scrolloff=12
@@ -223,7 +241,7 @@ map <Leader>j :make<CR>
 noremap <leader>h :set cursorline!<CR>
 
 " Toggle line numbers
-noremap <leader>l :set number!<CR>
+noremap <leader>n :set number!<CR>
 
 " Quick window splitting
 nnoremap <leader>w <C-w>v<C-w>l
@@ -238,6 +256,7 @@ nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
+
 
 " Window dimensions for splits
 set noequalalways

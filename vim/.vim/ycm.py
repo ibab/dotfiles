@@ -22,10 +22,11 @@ compilation_database_folder = find_build_folder()
 flags = [
 '-Wall',
 '-Wextra',
-'-Werror',
-'-Wc++98-compat',
+#'-Werror',
+#'-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
+'-Wno-unused-parameter',
 '-fexceptions',
 '-DNDEBUG',
 '-DUSE_CLANG_COMPLETER',

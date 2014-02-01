@@ -232,8 +232,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("DiffAdd", "ffffff", "42bb42", "bold")
     call <SID>X("DiffChange", "ffffff", "6969ce", "bold")
     call <SID>X("DiffText", "ffffff", "cc4949", "bold")
-    "DiffDelete
-    "DiffText
+    call <SID>X("DiffDelete", "ffffff", "cc4949", "bold")
     "ErrorMsg
     call <SID>X("VertSplit", "444444", "7f7f7f", "reverse")
     call <SID>X("Folded", "ffd700", "4d4d4d", "")
@@ -257,10 +256,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "Menu
     "Scrollbar
     "Tooltip
-    call <SID>X("Pmenu", "000000", "ffffff", "")
-    call <SID>X("PmenuSel", "ffffff", "666666", "")
-    call <SID>X("PmenuSbar", "000000", "ffffff", "")
-    call <SID>X("PmenuThumb", "bb4444", "ffffff", "")
+    call <SID>X("Pmenu", "cccccc", "333333", "")
+    call <SID>X("PmenuSel", "ffffff", "444444", "")
+    call <SID>X("PmenuSbar", "cccccc", "333333", "")
+    call <SID>X("PmenuThumb", "bb4444", "666666", "")
 
     "Invisible character colors
     call <SID>X("NonText", "555555", "", "none")
@@ -280,7 +279,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Ignore", "666666", "", "")
     "Error
     call <SID>X("Todo", "ff4500", "eeee00", "")
-    call <SID>X("SpellBad", "ff1111", "000000", "")
+    call <SID>X("SpellBad", "ff6666", "000000", "bold")
+    call <SID>X("SpellCap", "ffff66", "000000", "bold")
 
     call <SID>X("User1", "eea040", "444444", "")
     call <SID>X("User2", "dd3333", "444444", "")
@@ -288,10 +288,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("User4", "a0ee40", "444444", "")
     call <SID>X("User5", "eeee40", "444444", "")
 
-call <SID>X("GitGutterAdd", "00ff00", "", "")
-call <SID>X("GitGutterChange", "ffff00", "", "")
-call <SID>X("GitGutterDelete", "ff0000", "", "")
-call <SID>X("GitGutterChangeDelete", "ffff00", "", "")
+    call <SID>X("GitGutterAdd", "00ff00", "", "")
+    call <SID>X("GitGutterChange", "ffff00", "", "")
+    call <SID>X("GitGutterDelete", "ff0000", "", "")
+    call <SID>X("GitGutterChangeDelete", "ffff00", "", "")
 
     " delete functions {{{
     delf <SID>X
