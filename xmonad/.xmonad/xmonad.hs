@@ -41,7 +41,7 @@ import System.Taffybar.XMonadLog
 import DBus.Client
 
 editor         = "gvim"
-syncClipboard  = "lolictrl -spc > /dev/null"
+syncClipboard  = "xcmenuctrl -spc > /dev/null"
 lockScreen     = "i3lock -i /usr/local/wallpapers/background"
 commonApps     = [ "firefox"
                  , "nautilus"
