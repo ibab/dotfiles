@@ -3,85 +3,25 @@
 ! file:     ~/.Xresources
 !--------------------------------------------------
 
-! Standard settings:
-
-!*color0:				rgb:00/00/00
-!*color1:				rgb:e0/10/10
-!*color2:				rgb:20/ad/20
-!*color3:				rgb:d4/c2/4f
-!*color4:				rgb:23/1b/b8
-!*color5:				rgb:9c/38/85
-!*color6:				rgb:1d/bd/b8
-!*color7:				rgb:fe/fe/fe
-!*color8:				rgb:6a/6a/6a
-!*color9:				rgb:e8/3a/3d
-!*color10:				rgb:35/e9/56
-!*color11:				rgb:ff/ff/2f
-!*color12:				rgb:3a/53/f0
-!*color13:				rgb:e6/28/ba
-!*color14:				rgb:1c/f5/f5
-!*color15:				rgb:ff/ff/ff
-
 ! Cursor settings:
 xcursor.theme:			Vanilla-DMZ
 
-! Font settings:
-!xft.dpi:				96
-!xft.antialias:			true
-!xft.hinting:			true
-!xft.rgba:				rgb
-!xft.lcdfilter:          lcddefault
-!xft.hintstyle:			hintfull
-
 ! urxvt settings:
-urxvt*font:             xft:Dejavu Sans Mono for Powerline:pixelsize=13
-!urxvt*font:             xft:Source Code Pro:pixelsize=13
-!urxvt*font:             xft:Menlo:pixelsize=13
+urxvt*font:             xft:DejaVu Sans Mono for Powerline:pixelsize=13
 urxvt*scrollBar:		false
 urxvt*internalBorder:	3
 urxvt*letterSpace:      -1
 urxvt*cursorBlink:      true
-!urxvt.transparent:      true
-!urxvt.shading: 15
 URxvt.perl-ext-common:  default,matcher
 URxvt.matcher.button:   1
-urxvt.urlLauncher:   	/usr/bin/firefox
+urxvt.urlLauncher:   	/usr/bin/chromium
 urxvt.underlineURLs: 	true
-
-!urxvt.depth:            32
-urxvt.inputMethod:       none
-urxvt.preeditType:       OverTheSpot
-
+URxvt.colorUL:          #4682B4
+urxvt.inputMethod:      none
+urxvt.preeditType:      OverTheSpot
 urxvt.cursorColor:      #DDDDDD
-! foreground/background
-urxvt*background: #000000
-urxvt*foreground: #ffffff
-
-!!black
-!urxvt.color0  : #000000
-!urxvt.color8  : #555555
-!!red
-!urxvt.color1  : #CC0000
-!urxvt.color9  : #FF5555
-!!green
-!urxvt.color2  : #00CC00
-!urxvt.color10 : #55FF55
-!!yellow
-!urxvt.color3  : #F7D542
-!urxvt.color11 : #FFFF55
-!!blue
-!urxvt.color4  : #2222EE
-!urxvt.color12 : #5555FF
-!!magenta
-!urxvt.color5  : #AA00AA
-!urxvt.color13 : #FF55FF
-!!cyan
-!urxvt.color6  : #00AAAA
-!urxvt.color14 : #55DDDD
-!!white
-!urxvt.color7  : #AAAAAA
-!urxvt.color15 : #FFFFFF
-
+urxvt*background:       #000000
+urxvt*foreground:       #ffffff
 
 ! xdvi settings:
 xdvi*background:		white
@@ -93,29 +33,26 @@ xpdf*enableFreetype:    yes
 xpdf*background:        white
 xpdf*foreground:        black
 
-
-!urxvt*underLine: on
-urxvt*colorMode: on
-urxvt*colorBD: lightyellow
-!urxvt*colorBDMode: off
-urxvt*colorUL: yellow
-urxvt*colorULMode: on
-urxvt*dynamicColors: off
+urxvt*colorMode:          on
+urxvt*colorBD:            lightyellow
+urxvt*colorUL:            yellow
+urxvt*colorULMode:        on
+urxvt*dynamicColors:      off
 urxvt*highlightSelection: true
 
-urxvt.color0:  #2E3436
-urxvt.color1:  #a40000
-urxvt.color2:  #4E9A06
-urxvt.color3:  #C4A000
-urxvt.color4:  #3465A4
-urxvt.color5:  #75507B
-urxvt.color6:  #ce5c00
-urxvt.color7:  #babdb9
-urxvt.color8:  #555753
-urxvt.color9:  #EF2929
-urxvt.color10: #8AE234
-urxvt.color11: #FCE94F
-urxvt.color12: #729FCF
-urxvt.color13: #AD7FA8
-urxvt.color14: #fcaf3e
-urxvt.color15: #EEEEEC
+urxvt.color0:           #2E3436
+urxvt.color1:           #a40000
+urxvt.color2:           #4E9A06
+urxvt.color3:           #C4A000
+urxvt.color4:           #3465A4
+urxvt.color5:           #75507B
+urxvt.color6:           #ce5c00
+urxvt.color7:           #babdb9
+urxvt.color8:           #555753
+urxvt.color9:           #EF2929
+urxvt.color10:          #8AE234
+urxvt.color11:          #FCE94F
+urxvt.color12:          #729FCF
+urxvt.color13:          #AD7FA8
+urxvt.color14:          #fcaf3e
+urxvt.color15:          #EEEEEC
