@@ -13,24 +13,20 @@ stty stop undef
 export EDITOR=vim
 export GOPATH=$HOME/Code/Go
 
-if [ "$COLORTERM" = "gnome-terminal" ]; then
-    export TERM=xterm-256color
-fi
-
-if [ "$TERM" = "rxvt-unicode-256color" ]; then
-    export TERMINAL='urxvt -e'
-fi
+source ~/.zsh/prompt.zsh
+source ~/.zsh/aliases.zsh
 
 # import giant list of ls colors:
-if [ "$TERM" = "rxvt-unicode-256color" ] || [ "$TERM" = "xterm-256color" ]; then
-    eval `dircolors -b ~/.dircolors`
+if [ "$TERM" = "rxvt-unicode-256color" ] || [ "$TERM" = "st-256color" ] || [ "$TERM" = "screen-256color" ]; then
+    eval $(dircolors -b ~/.dircolors)
 fi
 
-export LESS='-R'
+export LESS='-Ri'
 
 setopt incappendhistory
 setopt histignoredups
 setopt histignorespace
+setopt extended_history
 
 setopt correct
 setopt autocd
@@ -44,75 +40,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
-
-# Aliases
-
-alias ip='ip -4' # for now
-alias ccat='pygmentize -f terminal256'
-alias ipython3=ipython
-alias ls='ls --color=auto -Fh --group-directories-first'
-alias ll='ls -Fhla --color=force | less -R'
-alias -- '+x'='chmod +x'
-alias -- '-x'='chmod -x'
-alias ssh='ssh -q'
-alias tb='ls ~/.local/share/Trash/files'
-alias wat='aplay ~/Documents/wat.wav > /dev/null 2>&1 &|'
-alias git='noglob git'
-alias curl='noglob curl'
-alias t='tree -F --noreport'
-alias mail=mutt
-alias music=ncmpcpp
-alias pylab='ipython --pylab'
-alias open='mimeo'
-alias spawn='urxvt -e "cd $(pwd); vim"'
-
-if [ -f "/usr/bin/root" ]
-then
-    alias root='root -l'
-fi
-
-function emacs {
-    /usr/bin/emacsclient -c $@ &|
-}
-
-# Prompt
-
-if [[ "$TERM" =~ ".*-256color" ]]; then
-    local primary="113"
-    local dark="235"
-    local light="237"
-
-    jobsprompt="%(1j.%F{yellow}[%j]%f.)"
-    promptmarker="%K{$light}%F{$dark}%K{$light}%k%F{$light}%f"
-    foldersegment="%F{$dark}%K{$dark}%F{$primary}%~ %F{232}%f%k"
-    usernamesegment="%K{$dark}%F{$primary}%n%f%k"
-    sshsegment="%K{$dark}%F{223}@%m%f%k"
-    PS2="%K{$light} %k  "
-else
-    jobsprompt="%(1j.%F{yellow}[%j]%f.)"
-    promptmarker="%F{green}%#%f"
-    foldersegment="%{%B%F{blue}%}%~%{%f%b%}"
-    usernamesegment="%{%F{green}%}(%n)%f"
-    sshsegment="%{%F{yellow}%}(%m)%f"
-    PS2="| "
-fi
-
-PS1="$jobsprompt$promptmarker "
-
-function precmd {
-    vcs_info
-    RPS1="${vcs_info_msg_0_} $foldersegment"
-}
-
-# Add yellow marker when connected over SSH
-if [ -n "$SSH_CONNECTION" ]; then
-    PS1="$sshsegment$PS1"
-fi
-
-if [ "$USER" != "igor" ] && [ "$USER" != "ibabuschkin" ] && [ "$USER" != "ibabusch" ];
-then
-    PS1="$usernamesegment$PS1"
-fi
 
 # Completion
 
@@ -136,15 +63,6 @@ zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'    # Ign
 zstyle ":completion:*:commands" rehash 1
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.o' '*.hi'
 
-## vcs funtions (for dynamic right prompt)
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git hg
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%F{2}M%f'
-zstyle ':vcs_info:git:*' unstagedstr '%F{1}M%f'
-zstyle ':vcs_info:git:*' formats '%c%u %F{2}(%b)%f'
-zstyle ':vcs_info:git:*' actionformats '%c%u %F{3}[%a]%f%F{2}(%b)%f'
-
 if [ -f "/usr/bin/fasd" ];
 then
     eval "$(fasd --init auto)"
@@ -159,4 +77,4 @@ then
     }
 fi
 
-#alias note="python ~/note/note.py"
+alias note="python ~/Work/note/note.py"
