@@ -73,7 +73,7 @@ getPasswords = do
 
 myKeys conf = mkKeymap conf $ [ 
   ("M-<Return>",             spawn (terminal conf)                        ),
-  ("M-S-<Return>",           spawn "urxvt -cd \"`xcwd`\""                 ),
+  ("M-S-<Return>",           spawn $ "cd \"`xcwd`\"; " ++ terminal conf   ),
   ("M-e",                    spawn "gvim -c \"cd `xcwd`\""                ),
   ("M-<Backspace>",          kill                                         ),
   ("M-<Space>",              sendMessage NextLayout                       ),
@@ -84,6 +84,8 @@ myKeys conf = mkKeymap conf $ [
   ("<XF86AudioNext>",        spawn "mpc next"                             ),
   ("<XF86AudioPrev>",        spawn "mpc prev"                             ),
   ("M-<F11>",                spawn "mpc stop"                             ),
+  ("<XF86MonBrightnessUp>",  spawn "brightness up"                             ),
+  ("<XF86MonBrightnessDown>",spawn "brightness down"                             ),
   ("M-j",                    windows W.focusDown                          ),
   ("M-k",                    windows W.focusUp                            ),
   ("M-S-j",                  windows W.swapDown                           ),
@@ -139,6 +141,7 @@ matches = composeAll
   , title     =? "Welcome to Wolfram Mathematica 9" --> doFloat
   , title     =? "Audience Window - Haskell Pdf Presenter" --> doFloat
   , title     =? "Presenter Window - Haskell Pdf Presenter" --> doFloat
+  , title     =? "Plank" --> doIgnore
   , isFullscreen                     --> doFullFloat
   , isDialog                         --> doCenterFloat
   , role      =? "pop-up"            --> doCenterFloat
@@ -170,7 +173,7 @@ myTheme = defaultTheme
   , fontName = "xft:DejaVu Sans Mono:pixelsize=10"
   }
 
-myLayout = renamed [CutLeft 22] $ modify (tiled ||| tiledSpace ||| Mirror tiled ||| MosaicAlt M.empty)
+myLayout = renamed [CutLeft 22] $ modify (tiled ||| tiledSpace ||| Mirror tiled)
   where
     modify = minimize . addTitleBars . manageBorders . avoidStruts
     addTitleBars = noFrillsDeco shrinkText myTheme
@@ -190,7 +193,7 @@ main = do
       return mempty
 
   xmonad defaultConfig 
-    {   terminal           = "urxvt"
+    {   terminal           = "st"
     ,   focusFollowsMouse  = True
     ,   borderWidth        = 1
     ,   modMask            = mod4Mask
