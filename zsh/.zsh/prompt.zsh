@@ -11,16 +11,16 @@ if [[ "$TERM" =~ ".*-256color" ]]; then
     local black="0"
     local light="237"
 
-    jobsprompt="%(1j.%F{yellow}[%j]%f.)"
+    jobsprompt="%(1j.%F{221}(%j)%f .)"
     #promptmarker="%K{$dark}%F{$black}%F{113} %#%F{$dark}%k%f"
     promptmarker="%F{$primary}%B%#%f%b"
     foldersegment="%F{$dark}%K{$dark}%F{$primary}%~ %F{$black}%f%k"
     usernamesegment="%K{$black}%F{$primary}%n%f%k"
     sshsegment="%F{221}@%m%f"
-    vcssegment=" %K{$black} %c%u %F{$primary}%f%K{$primary}%F{$dark} %b%F{$dark} "
-    vcsactionsegment="%K{$black} %c%u %F{$primary}%K{$primary}%F{$dark} %a %F{$dark} %b%F{$dark} "
+    vcssegment=" %K{$black} %c%u %F{$primary}%f%K{$primary}%F{$dark} %b%F{$dark}  "
+    vcsactionsegment="%K{$black} %c%u %F{$primary}%K{$primary}%F{$dark} %a %F{$dark  %b%F{$dark}  "
 
-    PS2="%K{$light} %k  "
+    PS2="%F{$primary}┃%f "
 else
     jobsprompt="%(1j.%F{yellow}[%j]%f.)"
     promptmarker="%F{green}%#%f"

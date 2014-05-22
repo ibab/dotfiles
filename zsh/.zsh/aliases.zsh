@@ -18,6 +18,7 @@ alias pylab='ipython --pylab'
 alias open='mimeo'
 alias spawn='urxvt -e "cd $(pwd); vim"'
 alias userctl='systemctl --user'
+alias mk='make 2>&1 | tee build.log | less -RiMS +F'
 
 function attach {
   ssh $1 -t LANG=en_US.UTF-8 tmux attach-session -t main
