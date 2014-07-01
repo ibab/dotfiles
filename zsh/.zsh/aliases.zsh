@@ -15,10 +15,13 @@ alias t='tree -F --noreport'
 alias mail=mutt
 alias music=ncmpcpp
 alias pylab='ipython --pylab'
-alias open='mimeo'
+function open {
+  xdg-open $1 > /dev/null 2>&1 &|
+}
 alias spawn='urxvt -e "cd $(pwd); vim"'
 alias userctl='systemctl --user'
 alias mk='make 2>&1 | tee build.log | less -RiMS +F'
+alias journalctl='journalctl -b'
 
 function attach {
   ssh $1 -t LANG=en_US.UTF-8 tmux attach-session -t main
