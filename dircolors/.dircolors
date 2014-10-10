@@ -51,7 +51,7 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;1
 .rb                   38;5;172
 .zsh                  38;5;173
 .m                    38;5;172
-.jl                    38;5;172
+.jl                   38;5;172
 .vim                  38;5;83
 .vimrc                38;5;83
 .cfg                  38;5;128
@@ -65,6 +65,8 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;1
 .target               38;5;173
 .htm                  38;5;125
 .html                 38;5;125
+.hamlet               38;5;125
+.heist                38;5;125
 .tex                  38;5;174
 .j2                   38;5;214
 .csv                  38;5;78
@@ -370,6 +372,8 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;1
 .gp4                  38;5;115
 .tg                   38;5;99
 .model                38;5;99
+.ldif                 38;5;99
+
 
 TERM Eterm
 TERM ansi
@@ -421,5 +425,8 @@ TERM xterm-256color
 TERM xterm-88color
 TERM xterm-color
 TERM xterm-debian
+TERM st
+TERM st-256color
+
 
 # vim: ft=dircolors:

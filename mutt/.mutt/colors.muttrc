@@ -3,10 +3,16 @@ color tree color243 default
 color error red default
 color tilde blue default
 
+color index color113 black '~t igor@babuschkin.de'
+color index color113 black '~t igor@babuschk.in'
+color index color113 black '~t igor@babushk.in'
+color index color113 black '~t igor.babuschkin@udo.edu'
+color index color113 black '~t igor.babuschkin@cern.ch'
+
 # Uni:
-color index color155 default '~f @udo.edu'
-color index color155 default '~f tu-dortmund.de'
-color index color155 default '~f uni-dortmund.de'
+#color index color155 default '~f @udo.edu'
+#color index color155 default '~f tu-dortmund.de'
+#color index color155 default '~f uni-dortmund.de'
 
 # GMail:
 #color index color196 default '~f @gmail.com'

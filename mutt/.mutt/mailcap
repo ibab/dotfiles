@@ -1,2 +1,3 @@
 text/html;         w3m -I %{charset} -T text/html; copiousoutput;
-text/html;         mimeo %s;
+image/*;           mutt_bgrun xdg-open %s;
+application/*;     mutt_bgrun xdg-open %s;

@@ -3,7 +3,7 @@ c = get_config()
 
 # This can cause problems with functions that expect
 # non-unicode strings, but is generally worth it
-c.InteractiveShellApp.exec_lines = ["from __future__ import absolute_import, division, print_function, unicode_literals"]
+c.InteractiveShellApp.exec_lines = ["from __future__ import absolute_import, division, print_function"]
 
 c.TerminalIPythonApp.display_banner = False
 c.TerminalInteractiveShell.show_rewritten_input = False

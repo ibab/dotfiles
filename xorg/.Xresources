@@ -9,7 +9,7 @@ xcursor.theme:			Vanilla-DMZ
 ! urxvt settings:
 urxvt*font:             xft:DejaVu Sans Mono for Powerline:pixelsize=13
 urxvt*scrollBar:		false
-urxvt*internalBorder:	3
+urxvt*internalBorder:	5
 urxvt*letterSpace:      -1
 urxvt*cursorBlink:      true
 URxvt.perl-ext-common:  default,matcher
@@ -40,7 +40,8 @@ urxvt*colorULMode:        on
 urxvt*dynamicColors:      off
 urxvt*highlightSelection: true
 
-urxvt.color0:           #2E3436
+urxvt.color0: #000000
+!urxvt.color0:           #2E3436
 urxvt.color1:           #a40000
 urxvt.color2:           #4E9A06
 urxvt.color3:           #C4A000

@@ -1,42 +1,61 @@
-"=============================
-" Vim configuration file
-"=============================
 
 set nocompatible
+set shell=/bin/bash
 
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'sjl/gundo.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'JuliaLang/julia-vim'
-Bundle 'vim-pandoc/vim-pandoc'
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'SirVer/ultisnips'
-Bundle 'lukerandall/haskellmode-vim'
-Bundle 'saltstack/salt-vim'
-Bundle 'chriskempson/base16-vim'
-Bundle 'jhenahan/idris-vim'
-Bundle 'mattn/emmet-vim'
-"Bundle 'airblade/vim-gitgutter'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'bling/vim-airline'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'sjl/gundo.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'JuliaLang/julia-vim'
+"Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'tpope/vim-markdown'
+Plugin 'SirVer/ultisnips'
+"Plugin 'lukerandall/haskellmode-vim'
+Plugin 'saltstack/salt-vim'
+Plugin 'chriskempson/base16-vim'
+"Plugin 'jhenahan/idris-vim'
+Plugin 'mattn/emmet-vim'
+"Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'bling/vim-airline'
 " Disable backups for sensitive data
-Bundle 'https://gist.github.com/5890634.git'
-Bundle 'tpope/vim-dispatch'
-Bundle 'pbrisbin/html-template-syntax'
-Bundle 'itchyny/calendar.vim'
-Bundle 'jayflo/vim-skip'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'https://gist.github.com/5890634.git'
+Plugin 'tpope/vim-dispatch'
+Plugin 'pbrisbin/html-template-syntax'
+Plugin 'itchyny/calendar.vim'
+Plugin 'jayflo/vim-skip'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'jalcine/cmake.vim'
+Plugin 'takac/vim-hardtime'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'ledger/vim-ledger'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'kana/vim-operator-user'
+
+call vundle#end()
+
+
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
+
 
 nnoremap <silent> _t :GhcModType<CR>
 
@@ -79,6 +98,7 @@ let g:syntastic_mode_map = { 'mode' : 'passive',
 let g:pandoc_no_folding = 1
 
 let g:haddock_browser = "firefox"
+let g:haddock_docdir = ""
 
 let g:pad_dir = "~/.pad"
 
@@ -86,7 +106,7 @@ set foldlevelstart=20
 
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_min_num_of_chars_for_completion = 4
-let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1, 'python': 1 }
+let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1 }
 let g:ycm_complete_in_comments_and_strings = 0
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 "let g:ycm_key_invoke_completion = '<c-h>'
@@ -118,7 +138,7 @@ filetype indent on
 set cinoptions+=L0
 syntax enable
 set backspace=eol,start,indent
-"set mouse=a
+set mouse=a
 set completeopt=menu
 
 " Mapleaders
@@ -303,7 +323,7 @@ let NERDTreeShowHidden=0
 cmap W! silent w !sudo tee % >/dev/null
 
 " More convenient copy/paste for the + register
-noremap <leader>y "+y
+noremap <Leader>y "+y
 noremap <leader>Y "+Y
 noremap <leader>p "+p
 noremap <leader>P "+P

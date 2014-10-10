@@ -96,7 +96,7 @@ source ~/.mutt/main.muttrc
 folder-hook main/*   source ~/.mutt/main.muttrc
 folder-hook gmail/*  source ~/.mutt/gmail.muttrc
 folder-hook uni/*    source ~/.mutt/uni.muttrc
-folder-hook cern/*    source ~/.mutt/cern.muttrc
+folder-hook cern/*   source ~/.mutt/cern.muttrc
 
 # these just give me headaches
 bind index,pager \#    noop
@@ -165,6 +165,5 @@ set pgp_mime_signature_description  = "Digital signature"
 set mime_forward=yes
 set mime_forward_rest=yes
 
-subscribe systemd-devel@lists.freedesktop.org
-subscribe wayland-devel@lists.freedesktop.org
-subscribe studpool-admins@physik.tu-dortmund.de
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html; rm ~/.cache/mutt/mail.html<enter>"
+

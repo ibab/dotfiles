@@ -16,4 +16,6 @@ macro index S "<save-message>+main/spam<enter>"               "mark message as s
 macro index,pager I   "<change-folder>+main/INBOX<enter>"   "go to Inbox"
 macro index,pager O   "<change-folder>+main/archive<enter>"   "go to Inbox"
 
+
+
 # vim: ft=muttrc

@@ -1,12 +1,13 @@
 import System.Taffybar
 
 import System.Taffybar.Systray
-import System.Taffybar.XMonadLog
 import System.Taffybar.SimpleClock
 import System.Taffybar.FreedesktopNotifications
 import System.Taffybar.MPRIS2
 import System.Taffybar.Battery
 import System.Taffybar.Maildir
+import System.Taffybar.Pager
+import System.Taffybar.TaffyPager
 
 import System.Taffybar.Widgets.PollingBar
 import System.Taffybar.Widgets.PollingGraph
@@ -40,7 +41,7 @@ memCfg = defaultGraphConfig
   { graphDataColors = [(22/255, 147/255, 165/255, 1)]
   , graphLabel = Nothing
   , graphWidth = 30
-  , graphPadding = 1
+  , graphPadding = 2
   , graphBorderColor = (0.247, 0.247, 0.247)
   }
 
@@ -48,12 +49,12 @@ cpuCfg = defaultGraphConfig
   { graphDataColors = [(251/255, 184/255, 41/255, 1), (1, 0, 1, 0.5)]
   , graphLabel = Nothing
   , graphWidth = 30
-  , graphPadding = 1
+  , graphPadding = 2
   , graphBorderColor = (0.247, 0.247, 0.247)
   }
 
 batCfg = defaultBatteryConfig
-  { barPadding     = 1
+  { barPadding     = 2
   , barColor       = \perc -> let (RGB r g b) =  hsl (120 * perc) 1 0.5 in (r, g, b)
   , barBorderColor = (0.247, 0.247, 0.247)
   , barWidth = 12
@@ -85,7 +86,6 @@ pad = do
   label <- labelNew Nothing
   widgetShowAll label
   return (toWidget label)
-logger    = xmonadLogNew
 note      = notifyAreaNew defaultNotificationConfig
 mpris     = mpris2New
 mem       = pollingGraphNew memCfg 4 memCallback
@@ -97,8 +97,22 @@ mailGmail = mailDirNew "<span fgcolor='yellow'>G</span>" "/home/igor/.mail/gmail
 mailUni   = mailDirNew "<span fgcolor='yellow'>U</span>" "/home/igor/.mail/uni/INBOX"
 mailCern  = mailDirNew "<span fgcolor='yellow'>C</span>" "/home/igor/.mail/cern/INBOX"
 
+myPagerConfig :: PagerConfig
+myPagerConfig = PagerConfig
+  { activeWindow = escape . shorten 40
+  , activeLayout = escape
+  , activeWorkspace = colorize "yellow" "" . escape
+  , hiddenWorkspace = colorize "light grey" "" . escape
+  , emptyWorkspace = colorize "grey" "" . escape
+  , visibleWorkspace = colorize "white" "" . escape
+  , urgentWorkspace = colorize "red" "" . escape
+  , widgetSep = " :: "
+  }
+
+pager = taffyPagerNew myPagerConfig
+
 main = defaultTaffybar defaultTaffybarConfig
-  { startWidgets = [pad, logger]
+  { startWidgets = [ pad, pager ]
   , endWidgets = [ pad
                  , myClock
                  , mem
@@ -111,5 +125,5 @@ main = defaultTaffybar defaultTaffybarConfig
                  , mailCern
                  , mpris
                  ]
-  , barHeight  = 18
+  , barHeight  = 19
   }

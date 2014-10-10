@@ -6,11 +6,5 @@ style "default" {
   font_name = "DejaVu Sans Mono 10"
 }
 
-style "notification-button" = "default" {
-  bg[NORMAL]   = "#333333"
-  text[NORMAL] = "#FF0000"
-  fg[NORMAL] = "#FF0000"
-}
-
 widget "Taffybar*" style "default"
-widget "*NotificationCloseButton" style "notification-button"
+

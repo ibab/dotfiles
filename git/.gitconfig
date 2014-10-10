@@ -15,12 +15,13 @@
     editor             = vim
     pager              = less
     # Show unicode characters in filenames
-    quotepath          = true
+    quotepath          = false
 
 [diff]
     tool               = vimdiff
     # Detect renames
     renames            = copies
+    prompt             = false
 
 [merge]
     tool               = vimdiff
