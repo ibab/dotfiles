@@ -28,12 +28,13 @@ function attach {
   #ssh $1 -t LANG=en_US.UTF-8 tmux new-session -s main
 }
 
-if [ -f "/usr/bin/root" ]
-then
-    alias root='root -l'
-fi
+alias root='root -l'
 
 function emacs {
     /usr/bin/emacsclient -c $@ &|
+}
+
+function run {
+    gaudirun.py $1 | tee $1.log
 }
 
