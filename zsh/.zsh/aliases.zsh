@@ -24,7 +24,7 @@ alias mk='make 2>&1 | tee build.log | less -RiMS +F'
 alias journalctl='journalctl -b'
 
 function attach {
-  ssh $1 -t LANG=en_US.UTF-8 tmux attach-session -t main
+  ssh $1 -t LANG=en_US.UTF-8 tmux attach-session
   #ssh $1 -t LANG=en_US.UTF-8 tmux new-session -s main
 }
 
@@ -37,3 +37,6 @@ function emacs {
     /usr/bin/emacsclient -c $@ &|
 }
 
+function refresh {
+    export $(tmux show-environment | grep "^SSH_AUTH_SOCK")
+}
