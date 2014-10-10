@@ -23,9 +23,13 @@ alias userctl='systemctl --user'
 alias mk='make 2>&1 | tee build.log | less -RiMS +F'
 alias journalctl='journalctl -b'
 
-function attach {
-  ssh $1 -t LANG=en_US.UTF-8 tmux attach-session
-  #ssh $1 -t LANG=en_US.UTF-8 tmux new-session -s main
+# Attaches to a tmux session or starts a new one
+function att {
+  ssh $1 -t LANG=$LANG tmux attach-session
+  if [ $? -eq 1 ]; then
+      echo "Starting new session"
+      ssh $1 -t LANG=$LANG tmux new-session -s main
+  fi
 }
 
 alias root='root -l'
