@@ -35,14 +35,20 @@ fi
 PS1="$jobsprompt$promptmarker "
 
 if [ -n "$TMUX" ]; then
-    function refresh { export $(tmux show-environment | grep "^SSH_AUTH_SOCK") }
+    function refresh {
+        export $(tmux show-environment | grep "^SSH_AUTH_SOCK")
+        export $(tmux show-environment | grep "^DISPLAY")
+    }
 else
     function refresh { }
 fi
 
-function precmd {
+function preexec {
     # Refresh environment if inside tmux
     refresh
+}
+
+function precmd {
     # Update prompt
     vcs_info
     RPS1="${vcs_info_msg_0_}$foldersegment"
