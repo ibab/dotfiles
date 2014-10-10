@@ -14,7 +14,7 @@ export EDITOR=vim
 export GOPATH=$HOME/Code/Go
 
 source ~/.zsh/prompt.zsh
-source ~/.zsh/aliases.zsh
+source ~/.zsh/commands.zsh
 
 # import giant list of ls colors:
 if [ "$TERM" = "rxvt-unicode-256color" ] || [ "$TERM" = "st-256color" ] || [ "$TERM" = "screen-256color" ]; then

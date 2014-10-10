@@ -34,9 +34,19 @@ fi
 
 PS1="$jobsprompt$promptmarker "
 
+if [ -n "$TMUX" ]; then
+    function refresh { export $(tmux show-environment | grep "^SSH_AUTH_SOCK") }
+else
+    function refresh { }
+fi
+
 function precmd {
+    # Refresh environment if inside tmux
+    refresh
+    # Update prompt
     vcs_info
     RPS1="${vcs_info_msg_0_}$foldersegment"
+    # Update terminal title
     if [ $TERM != "linux" ]; then
         print -Pn "\e]2;$termtitle\a" 2>/dev/null
     fi

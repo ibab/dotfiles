@@ -37,6 +37,3 @@ function emacs {
     /usr/bin/emacsclient -c $@ &|
 }
 
-function refresh {
-    export $(tmux show-environment | grep "^SSH_AUTH_SOCK")
-}
