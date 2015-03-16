@@ -139,6 +139,7 @@ let g:UltiSnipsSnippetsDir="~/.vim/snippets"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 let g:surround_indent=1
+let g:surround_108 = "\\begin{\1environment: \1}\r\\end{\1\1}"
 
 au BufNewFile,BufRead wscript* set filetype=python
 
