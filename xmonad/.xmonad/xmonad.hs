@@ -31,6 +31,8 @@ import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import Custom.XMonad.Layout.NoFrillsDecoration
 import XMonad.Layout.MosaicAlt
+import XMonad.Layout.BinarySpacePartition
+import qualified XMonad.Layout.BinarySpacePartition as BSP
 
 import XMonad.Actions.GridSelect
 import XMonad.Actions.NoBorders
@@ -66,8 +68,8 @@ selectPassword s = spawn $ "pass -c " ++ s
 
 getPasswords :: IO [String]
 getPasswords = do
-  user <- getEnv "USER"
-  entries <- getDirectoryContents $ "/home/" ++ user ++ "/.password-store"
+  home <- getEnv "HOME"
+  entries <- getDirectoryContents $ home ++ "/.password-store"
   return $ map takeBaseName entries
 
 myKeys conf = mkKeymap conf $ [ 
@@ -83,28 +85,33 @@ myKeys conf = mkKeymap conf $ [
   ("<XF86AudioNext>",        spawn "mpc next"                             ),
   ("<XF86AudioPrev>",        spawn "mpc prev"                             ),
   ("M-<F11>",                spawn "mpc stop"                             ),
-  ("<XF86MonBrightnessUp>",  spawn "brightness up"                             ),
-  ("<XF86MonBrightnessDown>",spawn "brightness down"                             ),
+  ("<XF86MonBrightnessUp>",  spawn "brightness up"                        ),
+  ("<XF86MonBrightnessDown>",spawn "brightness down"                      ),
   ("M-j",                    windows W.focusDown                          ),
   ("M-k",                    windows W.focusUp                            ),
   ("M-S-j",                  windows W.swapDown                           ),
   ("M-S-k",                  windows W.swapUp                             ),
-  ("M-h",                    sendMessage Shrink                           ),
-  ("M-l",                    sendMessage Expand                           ),
+  ("M-h",                    sendMessage Shrink >> sendMessage (ExpandTowards L) ),
+  ("M-l",                    sendMessage Expand >> sendMessage (ExpandTowards R) ),
+  ("M-S-l",                  sendMessage $ ShrinkFrom L                   ),
+  ("M-S-h",                  sendMessage $ ShrinkFrom R                   ),
   ("M-b",                    sendMessage ToggleStruts                     ),
   ("M-S-b",                  withFocused toggleBorder                     ),
   ("M-c",                    spawn syncClipboard                          ),
   ("M-S-q",                  io exitSuccess                               ),
-  ("M-r",                    restartXMonad                                ),
-  ("M-S-r",                  spawn "devmon -r"                            ),
+  ("M-S-r",                  restartXMonad                                ),
   ("M-x",                    shellPrompt promptConfig                     ),
   ("M-z",                    passPrompt promptConfig                      ),
-  ("M-S-l",                  spawn lockScreen                             ),
+  ("M-C-l",                  spawn lockScreen                             ),
   ("M-t",                    spawn "toggle.sh"                            ),
-  ("M-p",                    spawn "myproxy start"                        ),
-  ("M-S-p",                  spawn "myproxy stop"                         ),
   ("M-S-t",                  withFocused $ windows . W.sink               ),
   ("<Print>",                spawn "gnome-screenshot"                     ),
+  ("M-<Up>",                 sendMessage $ ExpandTowards U                ),
+  ("M-C-<Down>",             sendMessage $ ExpandTowards D                ),
+  ("M-<Down>",               sendMessage $ ShrinkFrom U                   ),
+  ("M-C-<Up>",               sendMessage $ ShrinkFrom D                   ),
+  ("M-s",                    sendMessage $ BSP.Swap                           ),
+  ("M-r",                    sendMessage $ Rotate                         ),
   ("<XF86Launch1>",          spawn "gnome-control-center"                 ),
   ("<XF86Display>",          spawn "xtoggle_vert"                         ),
   ("<XF86ScreenSaver>",      spawn lockScreen                             ) ]
@@ -129,7 +136,7 @@ promptConfig = defaultXPConfig
   , fgHLight    = "#ffffff"
   , bgColor     = "#1e2320"
   , bgHLight    = "#5f5f5f"
-  , height      = 18
+  , height      = 20
   , position    = Top
   }
 
@@ -155,7 +162,7 @@ myTheme = defaultTheme
   , fontName = "xft:DejaVu Sans Mono:pixelsize=10"
   }
 
-myLayout = modify tiled ||| addTitleBars (modify tiled) 
+myLayout = modify emptyBSP ||| addTitleBars (modify  emptyBSP)
   where
     modify = manageBorders . avoidStruts
     addTitleBars = noFrillsDeco shrinkText myTheme
