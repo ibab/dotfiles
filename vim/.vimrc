@@ -7,7 +7,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 
-
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -42,9 +41,24 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ledger/vim-ledger'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'kana/vim-operator-user'
+Plugin 'xolox/vim-misc'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+"Plugin 'xolox/vim-notes'
+Plugin 'cespare/vim-toml'
+Plugin 'srstevenson/vim-decfile'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'mtscout6/vim-cjsx'
 
 call vundle#end()
 
+let g:tex_conceal = ""
+
+let g:jsx_ext_required = 0
+
+let g:notes_directories = ['~/Work/E5/b2dmumu/logbook']
+let g:notes_list_bullets = ['-']
+let g:notes_unicode_enabled = 0
 
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
@@ -56,6 +70,7 @@ autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 
+let g:ledger_fillstring = '    -'
 
 nnoremap <silent> _t :GhcModType<CR>
 
