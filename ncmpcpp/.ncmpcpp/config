@@ -5,3 +5,5 @@ playlist_display_mode = "columns"
 autocenter_mode = "yes"
 playlist_show_remaining_time = "yes"
 playlist_shorten_total_times = "yes"
+media_library_primary_tag = album_artist
+
