@@ -21,7 +21,8 @@ import XMonad.Hooks.ICCCMFocus
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
-import XMonad.Prompt.Ssh
+import XMonad.Prompt.Pass
+import XMonad.Prompt.ConfirmPrompt
 
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig
@@ -51,26 +52,26 @@ lockScreen     = "dm-tool lock"
 
 restartXMonad = spawn "xmonad --recompile && xmonad --restart && notify-send 'Restarted XMonad'"
 
-data Pass = Pass
-
-instance XPrompt Pass where
-  showXPrompt       Pass = "Pass: "
-  commandToComplete _ c  = c
-  nextCompletion      _  = getNextCompletion
-
-passPrompt :: XPConfig -> X ()
-passPrompt c = do
-  li <- io getPasswords
-  mkXPrompt Pass c (mkComplFunFromList li) selectPassword
-
-selectPassword :: String -> X ()
-selectPassword s = spawn $ "pass -c " ++ s
-
-getPasswords :: IO [String]
-getPasswords = do
-  home <- getEnv "HOME"
-  entries <- getDirectoryContents $ home ++ "/.password-store"
-  return $ map takeBaseName entries
+--data Pass = Pass
+--
+--instance XPrompt Pass where
+--  showXPrompt       Pass = "Pass: "
+--  commandToComplete _ c  = c
+--  nextCompletion      _  = getNextCompletion
+--
+--passPrompt :: XPConfig -> X ()
+--passPrompt c = do
+--  li <- io getPasswords
+--  mkXPrompt Pass c (mkComplFunFromList li) selectPassword
+--
+--selectPassword :: String -> X ()
+--selectPassword s = spawn $ "pass -c " ++ s
+--
+--getPasswords :: IO [String]
+--getPasswords = do
+--  home <- getEnv "HOME"
+--  entries <- getDirectoryContents $ home ++ "/.password-store"
+--  return $ map takeBaseName entries
 
 myKeys conf = mkKeymap conf $ [ 
   ("M-<Return>",             spawn (terminal conf)                        ),
@@ -96,9 +97,9 @@ myKeys conf = mkKeymap conf $ [
   ("M-S-l",                  sendMessage $ ShrinkFrom L                   ),
   ("M-S-h",                  sendMessage $ ShrinkFrom R                   ),
   ("M-b",                    sendMessage ToggleStruts                     ),
-  ("M-S-b",                  withFocused toggleBorder                     ),
+  ("M-S-b",                  (withFocused toggleBorder >> refresh)        ),
   ("M-c",                    spawn syncClipboard                          ),
-  ("M-S-q",                  io exitSuccess                               ),
+  ("M-S-q",                  confirmPrompt promptConfig "exit" $ io exitSuccess ),
   ("M-S-r",                  restartXMonad                                ),
   ("M-x",                    shellPrompt promptConfig                     ),
   ("M-z",                    passPrompt promptConfig                      ),
@@ -140,7 +141,7 @@ promptConfig = defaultXPConfig
   , position    = Top
   }
 
-myManageHook = manageDocks <> matches <> placeHook (inBounds (underMouse (0.5,0.5))) 
+myManageHook = manageDocks <> matches -- <> placeHook (inBounds (underMouse (0.5,0.5))) 
 matches = composeAll
   [ title     =? "Eclipse"           --> doCenterFloat
   , title     =? "Eclipse SDK"       --> doCenterFloat
@@ -177,7 +178,8 @@ main = do
     ,   focusFollowsMouse  = True
     ,   borderWidth        = 2
     ,   modMask            = mod4Mask
-    ,   workspaces         = ["α", "β", "γ", "δ", "ε"]
+--    ,   workspaces         = ["α", "β", "γ", "δ", "ε"]
+    ,   workspaces         = ["a", "b", "c", "d", "e"]
     ,   normalBorderColor  = "#3f3f3f"
     ,   focusedBorderColor = "#5f5f5f"--"#990000"
     ,   keys               = myKeys
