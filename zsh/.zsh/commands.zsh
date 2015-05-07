@@ -25,7 +25,7 @@ alias journalctl='journalctl -b'
 
 # Attaches to a tmux session or starts a new one
 function att {
-  ssh $1 -t LANG=$LANG tmux attach-session
+  ssh $1 -t LANG=$LANG tmux new -t main
   if [ $? -eq 1 ]; then
       echo "Starting new session"
       ssh $1 -t LANG=$LANG tmux new-session -s main
