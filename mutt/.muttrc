@@ -122,7 +122,7 @@ bind index,pager R     group-reply
 # macros
 macro index \Cr "<tag-prefix><clear-flag>N" "mark tagged messages as read"
 macro index B   "<limit>~b "                "search message bodies"
-macro index,pager \cb |urlview\n
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 macro index <space>    "<sync-mailbox>"
 
 # account switching
@@ -165,5 +165,6 @@ set pgp_mime_signature_description  = "Digital signature"
 set mime_forward=yes
 set mime_forward_rest=yes
 
+set header_cache="~/.mutt/cache"
 macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html; rm ~/.cache/mutt/mail.html<enter>"
-
+set read_inc=500
