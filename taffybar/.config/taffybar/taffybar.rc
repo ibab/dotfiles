@@ -3,7 +3,7 @@ style "default" {
   bg[NORMAL] = "#1e2320"
   fg[NORMAL] = "#FFFFFF"
   text[NORMAL] = "#FFFFFF"
-  font_name = "DejaVu Sans Mono 10"
+  font_name = "DejaVu Sans 10"
 }
 
 widget "Taffybar*" style "default"
