@@ -29,6 +29,7 @@ set sleep_time          = 0
 #set arrow_cursor
 unset help
 set copy
+set wait_key=no
 
 set status_format       = " %f [%s/%S] %> (%P)"
 # "-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
@@ -121,7 +122,7 @@ bind index,pager R     group-reply
 # macros
 macro index \Cr "<tag-prefix><clear-flag>N" "mark tagged messages as read"
 macro index B   "<limit>~b "                "search message bodies"
-macro index,pager \cb |urlview\n
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 macro index <space>    "<sync-mailbox>"
 
 # account switching
