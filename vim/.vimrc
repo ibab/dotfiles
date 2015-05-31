@@ -49,6 +49,8 @@ Plugin 'cespare/vim-toml'
 Plugin 'srstevenson/vim-decfile'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mtscout6/vim-cjsx'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
@@ -260,7 +262,8 @@ set guioptions-=r  " Remove right-hand scrollbar
 set guioptions-=L  " Remove left-hand scrollbar
 
 " Hidden character toggling
-set nolist
+"set nolist
+set list
 set listchars=tab:»\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 noremap <silent><leader>l :set list!<CR>
 autocmd Filetype python map <buffer> <silent><leader>i :call system("ipython kernel &")<CR>:sleep 1<CR>:IPython<CR>
