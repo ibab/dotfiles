@@ -36,5 +36,5 @@ To set up something like this yourself, you can copy terminfo definitions from `
 
 ## Screenshot
 
-![Screenshot](screenshot.jpg)
+![Screenshot](.screenshot.jpg)
 
