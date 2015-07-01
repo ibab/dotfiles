@@ -24,7 +24,7 @@ Plugin 'saltstack/salt-vim'
 Plugin 'chriskempson/base16-vim'
 "Plugin 'jhenahan/idris-vim'
 Plugin 'mattn/emmet-vim'
-"Plugin 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'bling/vim-airline'
 " Disable backups for sensitive data
@@ -107,6 +107,10 @@ let g:airline_mode_map = {
 let g:airline#extensions#bufferline#overwrite_variables = 1
 set ttimeoutlen=50
 
+let g:gitgutter_sign_added = '│'
+let g:gitgutter_sign_modified = '│'
+let g:gitgutter_sign_removed = '_'
+let g:gitgutter_sign_modified_removed = '_'
 
 let g:syntastic_mode_map = { 'mode' : 'passive',
                             \ 'active_filetypes' : [],
