@@ -8,6 +8,7 @@ set mailcap_path        = ~/.mutt/mailcap
 #set signature           = ~/.mutt/sig
 set tmpdir              = ~/.mutt/temp
 set editor              = "/usr/bin/vim +/^$"
+set wait_key            = no
 
 # main options
 set mbox_type           = Maildir
@@ -86,6 +87,16 @@ hdr_order from: to: cc: date: subject:
 # boxes
 source ~/.mutt/mailboxes
 
+set sidebar_width=20
+set sidebar_visible=yes
+set sidebar_delim=|
+color sidebar_new yellow default
+color sidebar color240 default
+
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
 # always sourced
 #source $alias_file
 source "~/.mutt/colors.sh|"
@@ -153,18 +164,18 @@ set print_command="muttprint -P A4 -p TO_FILE:/tmp/$USER.ps && okular /tmp/$USER
 
 # Encryption settings
 
-source /etc/Muttrc.gpg.dist
+#source /etc/Muttrc.gpg.dist
 set pgp_use_gpg_agent               = yes
 set pgp_auto_decode                 = yes
 set crypt_autosign
 set crypt_replysignencrypted        = yes
 set crypt_verify_sig                = yes
-set pgp_mime_signature_filename     = "signature.asc"
-set pgp_mime_signature_description  = "Digital signature"
+#set pgp_mime_signature_filename     = "signature.asc"
+#set pgp_mime_signature_description  = "Digital signature"
 
 set mime_forward=yes
 set mime_forward_rest=yes
 
 set header_cache="~/.mutt/cache"
 macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html; rm ~/.cache/mutt/mail.html<enter>"
-set read_inc=500
+set read_inc=100

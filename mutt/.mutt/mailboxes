@@ -1,1 +1,24 @@
-mailboxes "+uni/INBOX" "+uni/INBOX.Archive" "+uni/INBOX.Drafts" "+uni/INBOX/Sent" "+uni/INBOX.Trash"
+mailboxes "+main"    \
+          "+main/INBOX"    \
+          "+main/archive"  \
+          "+main/drafts"   \
+          "+main/sent"     \
+          "+main/trash"    \
+          "+uni"  \
+          "+uni/INBOX"     \
+          "+uni/archive"   \
+          "+uni/drafts"    \
+          "+uni/sent"      \
+          "+uni/trash"     \
+          "+gmail"  \
+          "+gmail/INBOX"   \
+          "+gmail/archive" \
+          "+gmail/drafts"  \
+          "+gmail/sent"    \
+          "+gmail/trash"   \
+          "+cern"  \
+          "+cern/INBOX"    \
+          "+cern/Archive"  \
+          "+cern/Drafts"   \
+          "+cern/Sent"     \
+          "+cern/Trash"
