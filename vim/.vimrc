@@ -6,7 +6,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -18,7 +17,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'JuliaLang/julia-vim'
 "Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'tpope/vim-markdown'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 "Plugin 'lukerandall/haskellmode-vim'
 Plugin 'saltstack/salt-vim'
 Plugin 'chriskempson/base16-vim'
@@ -33,7 +32,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'pbrisbin/html-template-syntax'
 Plugin 'itchyny/calendar.vim'
 Plugin 'jayflo/vim-skip'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 "Plugin 'jalcine/cmake.vim'
 Plugin 'takac/vim-hardtime'
 Plugin 'eagletmt/neco-ghc'
@@ -51,6 +50,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'mtscout6/vim-cjsx'
 Plugin 'Lokaltog/vim-distinguished'
 Plugin 'rust-lang/rust.vim'
+Plugin 'maverickg/stan.vim'
+Plugin 'eiginn/netrw'
+Plugin 'ibab/vim-snakemake'
 
 call vundle#end()
 
@@ -168,8 +170,8 @@ let mapleader=" "
 let maplocalleader=","
 
 " Spell check languages
-set spelllang=en,de
-set spellfile=~/.vim/spell/spell.UTF-8.add
+"set spelllang=en,de
+"set spellfile=~/.vim/spell/spell.UTF-8.add
 
 " Custom colorscheme
 colorscheme desert256

@@ -45,7 +45,9 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;1
 .clj                  38;5;204
 .java                 38;5;142
 .js                   38;5;42
+.jsx                  38;5;45
 .py                   38;5;41
+*Snakefile            38;5;41
 *wscript              38;5;41
 .pyx                  38;5;74
 .pxd                  38;5;156

@@ -1,5 +1,4 @@
 
-alias ip='ip -4' # for now
 alias ccat='pygmentize -f terminal256'
 alias ipython3=ipython
 alias ls='ls --color=auto -Fh --group-directories-first'
@@ -21,7 +20,7 @@ function open {
 alias spawn='urxvt -e "cd $(pwd); vim"'
 alias userctl='systemctl --user'
 alias mk='make 2>&1 | tee build.log | less -RiMS +F'
-alias journalctl='journalctl -b'
+alias journalctl='journalctl -e -b'
 
 # Attaches to a tmux session or starts a new one
 function att {
