@@ -8,9 +8,9 @@ alias -- '-x'='chmod -x'
 alias ssh='ssh -q'
 alias tb='ls ~/.local/share/Trash/files'
 alias wat='aplay ~/Documents/wat.wav > /dev/null 2>&1 &|'
-alias git='noglob git'
-alias curl='noglob curl'
-alias t='tree -F --noreport'
+if [ -n "/usr/bin/hub" ]; then
+    alias git=hub
+fi
 alias mail=mutt
 alias music=ncmpcpp
 alias pylab='ipython --pylab'

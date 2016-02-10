@@ -4,57 +4,57 @@ set shell=/bin/bash
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'sjl/gundo.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'JuliaLang/julia-vim'
-"Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'tpope/vim-markdown'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'lukerandall/haskellmode-vim'
-Plugin 'saltstack/salt-vim'
-Plugin 'chriskempson/base16-vim'
-"Plugin 'jhenahan/idris-vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'bling/vim-airline'
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-speeddating'
+Plug 'sjl/gundo.vim'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'mattn/emmet-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/vim-easy-align'
+Plug 'bling/vim-airline'
 " Disable backups for sensitive data
-Plugin 'https://gist.github.com/5890634.git'
-Plugin 'tpope/vim-dispatch'
-Plugin 'pbrisbin/html-template-syntax'
-Plugin 'itchyny/calendar.vim'
-Plugin 'jayflo/vim-skip'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'jalcine/cmake.vim'
-Plugin 'takac/vim-hardtime'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'ledger/vim-ledger'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'kana/vim-operator-user'
-Plugin 'xolox/vim-misc'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-"Plugin 'xolox/vim-notes'
-Plugin 'cespare/vim-toml'
-Plugin 'srstevenson/vim-decfile'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'rust-lang/rust.vim'
-Plugin 'maverickg/stan.vim'
-Plugin 'eiginn/netrw'
-Plugin 'ibab/vim-snakemake'
+Plug 'https://gist.github.com/5890634.git'
+Plug 'pbrisbin/html-template-syntax'
+Plug 'itchyny/calendar.vim'
+Plug 'jayflo/vim-skip'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang --system-boost --gocode-completer' }
+Plug 'takac/vim-hardtime'
+Plug 'ledger/vim-ledger'
+Plug 'rhysd/vim-clang-format'
+Plug 'kana/vim-operator-user'
+Plug 'xolox/vim-misc'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'cespare/vim-toml'
+Plug 'srstevenson/vim-decfile'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mtscout6/vim-cjsx'
+Plug 'maverickg/stan.vim'
+Plug 'eiginn/netrw'
+Plug 'ibab/vim-snakemake'
+Plug 'tommcdo/vim-exchange'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'JuliaLang/julia-vim'
+call plug#end()
 
-call vundle#end()
+let g:dispatch_handlers = [
+      \ 'tmux',
+      \ 'screen',
+      \ 'windows',
+      \ 'iterm',
+      \ 'headless',
+      \ 'x11',
+      \ ]
 
 let g:tex_conceal = ""
 
@@ -67,7 +67,8 @@ let g:notes_unicode_enabled = 0
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
+            \ "Standard" : "C++11",
+            \ "IndentWidth" : 2 }
 
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 
@@ -128,8 +129,8 @@ let g:pad_dir = "~/.pad"
 set foldlevelstart=20
 
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_min_num_of_chars_for_completion = 4
-let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1 }
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_filetype_whitelist = { 'c': 1, 'cpp': 1, 'python': 1 }
 let g:ycm_complete_in_comments_and_strings = 0
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 "let g:ycm_key_invoke_completion = '<c-h>'
@@ -152,8 +153,6 @@ let g:surround_108 = "\\begin{\1environment: \1}\r\\end{\1\1}"
 au BufNewFile,BufRead wscript* set filetype=python
 
 let g:jedi#show_function_definition = 0
-
-nnoremap <F11> :Make!<CR>
 
 " Standard settings
 set enc=utf-8
@@ -280,7 +279,7 @@ set showbreak=↪
 " select EVERYTHING!
 map <Leader>a ggVG
 
-map <Leader>j :make<CR>
+map <silent> <Leader>j :Make!<CR>
 
 " Highlight current line
 noremap <leader>h :set cursorline!<CR>

@@ -1,40 +1,14 @@
-snippet primes "Fast prime sieve" b
-def primes(n):
-    import numpy
-    """ Input n>=6, Returns a array of primes, 2 <= p < n """
-    sieve = numpy.ones(n // 3 + (n % 6 == 2), dtype=numpy.bool)
-    for i in range(1,int(n**0.5)//3+1):
-        if sieve[i]:
-            k = 3 * i + 1 | 1
-            sieve[k*k//3            ::2*k] = False
-            sieve[k*(k-2*(i&1)+4)//3::2*k] = False
-    return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
-$0
-endsnippet
-
-snippet future "__future__ imports" b
-from __future__ import absolute_import, division, print_function, unicode_literals
-$0
-endsnippet
-
-snippet clang "wscript for clang compilation" b
-#!/usr/bin/env python
-
-def options(c):
-    c.load('compiler_c')
-
-def configure(c):
-    c.env.CC="clang -fcolor-diagnostics"
-    c.load('compiler_c')
-
-def build(c):
-    c.program(source=c.path.ant_glob('*.c'),
-              target='main')
-$0
-endsnippet
-
-snippet embed "Embed IPython" b
-from IPython import embed; embed()
-$0
-endsnippet
+#snippet primes "Fast prime sieve" b
+#def primes(n):
+#    import numpy
+#    """ Input n>=6, Returns a array of primes, 2 <= p < n """
+#    sieve = numpy.ones(n // 3 + (n % 6 == 2), dtype=numpy.bool)
+#    for i in range(1,int(n**0.5)//3+1):
+#        if sieve[i]:
+#            k = 3 * i + 1 | 1
+#            sieve[k*k//3            ::2*k] = False
+#            sieve[k*(k-2*(i&1)+4)//3::2*k] = False
+#    return numpy.r_[2,3,((3*numpy.nonzero(sieve)[0][1:]+1)|1)]
+#$0
+#endsnippet
 

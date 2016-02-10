@@ -11,6 +11,7 @@ set PROMPT_SUBST
 stty stop undef
 
 export EDITOR=vim
+export TERMINAL=urxvt
 export GOPATH=$HOME/Code/Go
 
 source ~/.zsh/prompt.zsh

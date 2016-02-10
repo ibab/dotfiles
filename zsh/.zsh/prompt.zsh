@@ -13,7 +13,7 @@ if [[ "$TERM" =~ ".*-256color" ]]; then
 
     jobsprompt="%(1j.%F{221}(%j)%f .)"
     #promptmarker="%K{$dark}%F{$black}%F{113} %#%F{$dark}%k%f"
-    promptmarker="%F{$primary}%B%#%f%b"
+    promptmarker="%F{$primary}%B>%f%b"
     foldersegment="%F{$dark}%K{$dark}%F{$primary}%~ %F{$black}%k"
     usernamesegment="%K{$black}%F{$primary}%n%f%k"
     sshsegment="%F{221}@%m%f"

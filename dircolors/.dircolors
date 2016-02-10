@@ -371,6 +371,7 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;1
 .error                38;5;160;1
 .pi                   38;5;126
 .properties           38;5;197;1
+.proto                38;5;214
 .torrent              38;5;58
 .gp3                  38;5;114
 .gp4                  38;5;115

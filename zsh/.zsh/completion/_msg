@@ -1,0 +1,3 @@
+#compdef msg
+
+_arguments "1:subcommand:(status edit)"

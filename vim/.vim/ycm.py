@@ -65,6 +65,9 @@ flags = [
 './tests/gmock',
 '-isystem',
 './tests/gmock/include'
+'-I../include',
+'-I./include',
+'-I~/tensorflow/
 ]
 
 if compilation_database_folder:
