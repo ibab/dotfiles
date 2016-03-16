@@ -5,12 +5,6 @@
     email              = igor@babuschk.in
     signingkey         = ADCEE6BB
 
-[github]
-    user               = ibab
-
-#[init]
-#    templatedir        = ~/.git_template
-
 [core]
     editor             = vim
     pager              = less
@@ -28,10 +22,12 @@
 
 [color]
 	ui                 = true
+
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
+
 [color "status"]
     added              = green
     changed            = yellow
@@ -57,27 +53,24 @@
     detachedHead       = false
     amWorkDir          = false
 
+[rebase]
+    # Allow rebase with unstaged changes
+    autoStash = true
+
 [push]
     # Sane default push behaviour
     # (Only pushes the current branch)
     default            = upstream
 
 [alias]
-    #n                  = clone
-    #p                  = pull
-    #o                  = checkout
-    #c                  = commit
-    #b                  = branch
-    st                  = status -sb
-    lg                  = log --pretty=oneline --abbrev-commit --graph --decorate
+    st                 = status -sb
+    lg                 = log --pretty=oneline --abbrev-commit --graph --decorate
     ls                 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     alias              = "!git config -l | grep alias | cut -c 7-"
 
-[url "git@github.com:"]
-    insteadOf = "gh:"
-
-# vim: ft=gitconfig
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+
+# vim: ft=gitconfig
