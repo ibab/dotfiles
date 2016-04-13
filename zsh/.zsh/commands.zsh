@@ -5,7 +5,13 @@ alias ls='ls --color=auto -Fh --group-directories-first'
 alias ll='ls -1Fha --color=force | less -R'
 alias -- '+x'='chmod +x'
 alias -- '-x'='chmod -x'
-alias ssh='ssh -q'
+function ssh {
+    if [[ $1 == hepgpu1 ]]; then
+      SSHPASS=$(pass hepgpu1) sshpass -e ssh -q $*
+    else
+      ssh -q $*
+    fi
+}
 alias tb='ls ~/.local/share/Trash/files'
 alias wat='aplay ~/Documents/wat.wav > /dev/null 2>&1 &|'
 if [ -n "/usr/bin/hub" ]; then
@@ -13,7 +19,6 @@ if [ -n "/usr/bin/hub" ]; then
 fi
 alias mail=mutt
 alias music=ncmpcpp
-alias pylab='ipython --pylab'
 function open {
   xdg-open $1 > /dev/null 2>&1 &|
 }
@@ -21,6 +26,15 @@ alias spawn='urxvt -e "cd $(pwd); vim"'
 alias userctl='systemctl --user'
 alias mk='make 2>&1 | tee build.log | less -RiMS +F'
 alias journalctl='journalctl -e -b'
+if [ -f "/usr/bin/nvim" ]; then
+    alias vim=nvim
+    alias vimdiff="nvim -d"
+fi
+# ff stands for find file and is a command I regularly use when searching for
+# files
+function ff {
+    find . -iname "*$1*"
+}
 
 # Attaches to a tmux session or starts a new one
 function att {

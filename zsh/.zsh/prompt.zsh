@@ -1,8 +1,8 @@
 
-termtitle="%n@%m:%~"
-if [ $TERM != "linux" ]; then
-    print -Pn "\e]2;$termtitle\a"
-fi
+#termtitle="%n@%m:%~"
+#if [ $TERM != "linux" ]; then
+#    print -Pn "\e]2;$termtitle\a"
+#fi
 
 if [[ "$TERM" =~ ".*-256color" ]]; then
     local primary="113"
@@ -59,9 +59,9 @@ function precmd {
     vcs_info
     RPS1="${vcs_info_msg_0_}$foldersegment"
     # Update terminal title
-    if [ $TERM != "linux" ]; then
-        print -Pn "\e]2;$termtitle\a" 2>/dev/null
-    fi
+    #if [ $TERM != "linux" ]; then
+    #    print -Pn "\e]2;$termtitle\a" 2>/dev/null
+    #fi
 }
 
 # Add yellow marker when connected over SSH

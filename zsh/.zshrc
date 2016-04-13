@@ -3,15 +3,19 @@
 
 fpath=(~/.zsh/completion $fpath)
 
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTFILE="${HOME}/.histfile"
+HISTSIZE=100000
+SAVEHIST=100000
 set PROMPT_SUBST
 
 stty stop undef
 
-export EDITOR=vim
-export TERMINAL=urxvt
+if [ -e "/usr/bin/nvim" ]; then
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
+export TERMINAL=st
 export GOPATH=$HOME/Code/Go
 
 source ~/.zsh/prompt.zsh
@@ -30,7 +34,7 @@ setopt histignorespace
 setopt extended_history
 
 setopt correct
-setopt autocd
+#setopt autocd
 setopt extendedglob
 setopt nomatch
 setopt histignorespace
@@ -78,4 +82,3 @@ then
     }
 fi
 
-alias note="python ~/Work/note/note.py"
