@@ -182,6 +182,7 @@ then
     }
 fi
 
+alias vim=nvim
 alias k=kubectl
 export PATH="${HOME}/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
