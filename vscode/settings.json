@@ -1,0 +1,56 @@
+{
+    "editor.fontFamily": "Hack",
+    "python.linting.pylintArgs": [
+        "--generated-members=numpy.* ,torch.* ,cv2.* , cv.*",
+        "--errors-only"
+    ],
+    "files.exclude": {
+        "**/.idea": true,
+        "**/__pycache__": true,
+        "**/wandb": true,
+        "**/*.egg-info": true,
+        "**/target": true,
+        "**/Cargo.lock": true
+    },
+    "editor.formatOnSave": true,
+    "rust-analyzer.rustfmt.overrideCommand": null,
+    "editor.folding": false,
+    "editor.lightbulb.enabled": false,
+    "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.lruCapacity": 256,
+    "rust-analyzer.updates.askBeforeDownload": false,
+    "rust-analyzer.lens.implementations": false,
+    "[python]": {
+        "editor.formatOnSave": false
+    },
+    "rust-analyzer.diagnostics.disabled": [
+        "macro-error"
+    ],
+    "rust-analyzer.hoverActions.enable": false,
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "rust-analyzer.completion.addCallParenthesis": false,
+    "workbench.colorTheme": "GitHub Dark",
+    "editor.lineHeight": 14,
+    "editor.fontSize": 11,
+    "workbench.iconTheme": null,
+    "workbench.preferredDarkColorTheme": "GitHub Dark",
+    "workbench.colorCustomizations": {
+        "terminal.background": "#001117",
+        "editor.background": "#001117"
+    },
+    "editor.renderIndentGuides": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8CategorySeverity.E": "Warning",
+    "python.linting.flake8CategorySeverity.F": "Warning",
+    "python.linting.pylintEnabled": false,
+    "python.languageServer": "Pylance",
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.enabled": false,
+    "editor.hover.delay": 200,
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning"
+    ],
+    "errorLens.margin": "5ch"
+}

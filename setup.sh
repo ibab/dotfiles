@@ -22,3 +22,7 @@ ln -s "${PWD}/tmux.conf" ~/.tmux.conf
 
 # Git.
 ln -s "${PWD}/gitconfig" ~/.gitconfig
+
+# VS Code.
+cat vscode/extensions.list | xargs -n 1 code --install-extension
+ln -s "${PWD}/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json"
